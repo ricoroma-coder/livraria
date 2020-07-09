@@ -9,6 +9,8 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    @component('components.navbar')
+    @endcomponent
 
     @yield('content')
 
