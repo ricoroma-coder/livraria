@@ -60,6 +60,12 @@
     height: 100%;
 }
 
+/* ==== Footer ==== */
+
+#footer .col-sm {
+    width: 50%;
+}
+
 /* ==== General ==== */
 
 .title {
