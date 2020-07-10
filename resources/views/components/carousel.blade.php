@@ -1,10 +1,10 @@
-<div id="carouselIndicators" class="carousel slide mt-3 border p-2 position-relative" data-ride="carousel">
+<div id="carouselIndicators" class="carousel position-relative slide border border-dark rounded p-2" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselIndicators"class="active"></li>
         <li data-target="#carouselIndicators"></li>
         <li data-target="#carouselIndicators"></li>
     </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner h-100">
         <div class="carousel-item active">
             <img src="{{ asset('img/livro1.jpg') }}" class="d-block w-100" alt="Livro 1">
         </div>
