@@ -24,14 +24,14 @@
                 <h5 class="card-title">{{ $value['name'] }}</h5>
                 <p class="card-text">O autor já vendeu {{ $value['sales'] }} exemplares em nossa loja</p>
                 <a href="#" class="btn btn-primary">Conheça</a>
-                <p class="card-text"><small class="text-muted update-field"></small></p>
+                <p class="card-text update-field text-light"></p>
                 </div>
             </div>
 
             @if ($count == 1)
 
                 <div class="w-100 mt-1 mb-1"></div>
-                
+
             @endif
 
         @endforeach
