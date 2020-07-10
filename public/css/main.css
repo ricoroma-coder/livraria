@@ -31,15 +31,12 @@
 /* ==== PresentRow */
 
 #presentRow {
-    background: rgb(250,105,255);
-background: linear-gradient(90deg, 
-                            rgba(250,105,255,1) 5%, 
-                            rgba(255,133,246,1) 20%, 
-                            rgba(236,132,248,1) 33%, 
-                            rgba(255,86,219,1) 53%, 
-                            rgba(255,91,212,1) 71%, 
-                            rgba(242,79,165,1) 86%, 
-                            rgba(237,0,255,1) 100%);
+    background: rgb(255,120,120);
+    background: linear-gradient(90deg, 
+                                rgba(255,120,120,1) 0%,    
+                                rgba(246,207,35,1) 18%, 
+                                rgba(242,255,93,1) 55%, 
+                                rgba(255,237,0,1) 89%);
 }
 
 /* ==== Carousel ==== */
@@ -55,9 +52,7 @@ background: linear-gradient(90deg,
 }
 
 #carouselIndicators .carousel-item img {
-    background-size: contain;
-    height: 100%;
-    max-height: 100%;
+    height: 300px;
 }
 
 /* ==== cardCadastroLivro ==== */
@@ -76,11 +71,23 @@ background: linear-gradient(90deg,
 
 /* ==== Footer ==== */
 
+/* #footer {
+    bottom: 0;
+} */
+
 #footer .col-sm {
     width: 50%;
 }
 
 /* ==== General ==== */
+
+html, body {
+    min-height: auto;
+}
+
+body {
+    position: relative;
+}
 
 .title {
     width: 100%;
@@ -89,4 +96,5 @@ background: linear-gradient(90deg,
     font-size: 32px;
     text-align: center;
     padding: 5px;
+    z-index: 10;
 }

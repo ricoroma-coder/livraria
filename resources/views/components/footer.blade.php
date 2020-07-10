@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="footer">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-5" id="footer">
 
     <div class="row w-100">
 
@@ -6,9 +6,9 @@
 
             <p class="title text-warning">Estante Virtual</p>
 
-            <p class="text-light">Sua biblioteca virtual de livros exclusivos de editoras campeãs de vendas e autores conceituados. Consulte nossos exemplares e cadastre aqui sua leitura favorita!</p>
+            <p class="text-light">Sua biblioteca virtual de livros exclusivos de editoras campeãs de vendas e autores conceituados. Consulte nossos exemplares e adquira diretamente na loja!</p>
 
-            <a class="btn btn-primary ml-auto mr-auto" href="#">Cadastre!</a>
+            <a class="btn btn-primary ml-auto mr-auto" href="#">Confira!</a>
 
         </div>
 
