@@ -56,7 +56,7 @@
             <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted update-field">Last updated 3 mins ago</small></p>
             </div>
         </div>
         <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
@@ -64,7 +64,7 @@
             <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted update-field">Last updated 3 mins ago</small></p>
             </div>
         </div>
         <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
@@ -72,7 +72,7 @@
             <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted update-field">Last updated 3 mins ago</small></p>
             </div>
         </div>
         <div class="w-100 m-1"></div>
@@ -81,7 +81,7 @@
             <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted update-field">Last updated 3 mins ago</small></p>
             </div>
         </div>
         <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
@@ -89,7 +89,7 @@
             <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted update-field">Last updated 3 mins ago</small></p>
             </div>
         </div>
         <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
@@ -97,7 +97,7 @@
             <div class="card-body">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted update-field">Last updated 3 mins ago</small></p>
             </div>
         </div>
     </div> 
@@ -108,6 +108,18 @@
     @component('components.hall', ['content' => [['name'=> 'Machado de Assis', 'sales' => 100],['name'=> 'Eça de Queiroz', 'sales' => 200],['name'=> 'Henrique Roma', 'sales' => 300]]])
     @endcomponent
 
+</div>
+
+<div class="row w-100 m-0 mt-4 pb-4 h-auto position-relative">
+    <div class="jumbotron w-100 h-auto bg-transparent text-light position-relative">
+        <div class="bg-std bg-writers"></div>
+        <div class="bg-std bg-dark" style="opacity: 0.5; z-index: -1;"></div>
+        <h1 class="display-3 text-warning font-weight-bold">Autores</h1>
+        <p class="lead font-weight-bold">Confira a lista completa dos autores disponíveis em nossa loja clicando no botão.</p>
+        <div class="h-auto text-center">
+            <a class="btn btn-primary btn-lg mt-4 font-weight-bold" href="#" role="button">Acesse</a>
+        </div>
+    </div>
 </div>
 
 @endsection

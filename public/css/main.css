@@ -14,6 +14,21 @@
     height: 100%;
 }
 
+.bg-std {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.bg-writers {
+    background-image: url('../img/bg-writers.jpg');
+    z-index: -2;
+}
+
 .bg-image {
     background-image: url('../img/bg-image.jpg');
     background-repeat: no-repeat;
