@@ -1,9 +1,14 @@
+{{--  implement hall  --}}
+
+{{--  background  --}}
 <div class="row w-100 h-auto m-0">
     <div class="bg-hall w-100"></div>
 </div>
 
+{{--  row card-deck  --}}
 <div class="row m-0 w-100 h-auto">
-    <p class="title">Hall dos Escritores</p>
+    {{--  using $title  --}}
+    <p class="title">Top {{ $title }}</p>
 
     <div class="card-deck h-auto w-auto mr-auto ml-auto">
 
@@ -11,6 +16,7 @@
             $count = 0;
         @endphp
 
+        {{--  adding cards with $content  --}}
         @foreach ($content as $value)
 
             @php

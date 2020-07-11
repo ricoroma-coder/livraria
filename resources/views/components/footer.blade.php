@@ -1,7 +1,10 @@
+{{--  implementing navbar footer  --}}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-5" id="footer">
 
+    {{--  grid system  --}}
     <div class="row w-100">
 
+            {{--  col-1  --}}
         <div class="col-sm text-center">
 
             <p class="title text-warning">Estante Virtual</p>
@@ -12,6 +15,7 @@
 
         </div>
 
+        {{--  col-2  --}}
         <div class="col-sm text-center">
             <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
                 <ul class="navbar-nav flex-column ml-auto mr-auto">

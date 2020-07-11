@@ -1,8 +1,13 @@
+{{--  extending main layout  --}}
 @extends('layout.main')
 
+{{--  export title  --}}
 @section('title', 'Estante Virtual - Index')
+
+{{--  export content to main layout  --}}
 @section('content')
 
+{{--  customized row presentation  --}}
 <div class="row w-100 text-center ml-auto mr-auto border border-dark" style="height: 50px;" id="presentRow">
     <div class="col-sm p-1 h-100">
         <img class="h-100 mb-1" src="{{ asset('img/computer.png') }}" alt="...">
@@ -18,17 +23,23 @@
     </div>
 </div>
 
+{{--  container carousel  --}}
+
 <div class="container pt-4 pb-4">
 
+    {{--  grid system - 2 Columns  --}}
     <div class="row h-auto mb-4">
+        {{--  col-1  --}}
         <div class="col-sm h-100">
 
             <p class="title">Destaques</p>
 
+            {{--  import component carousel  --}}
             @component('components.carousel')
             @endcomponent
 
         </div>
+        {{--  col-2  --}}
         <div class="col-sm h-100">
             
             <p class="title">Nossos livros</p>
@@ -44,6 +55,8 @@
         </div>
     </div>
 </div>
+
+{{--  row best books  --}}
 
 <div class="row w-100 m-0 pb-4 mt-4 position-relative" style="height: auto;">
     <p class="title text-warning">Livros mais acessados</p>
@@ -103,12 +116,17 @@
     </div> 
 </div>
 
+{{--  Row hall writers  --}}
+
 <div class="row w-100 m-0 mt-4 pb-4">
 
-    @component('components.hall', ['content' => [['name'=> 'Machado de Assis', 'sales' => 100],['name'=> 'Eça de Queiroz', 'sales' => 200],['name'=> 'Henrique Roma', 'sales' => 300]]])
+    {{--  import component hall  --}}
+    @component('components.hall', ['content' => [['name'=> 'Machado de Assis', 'sales' => 100],['name'=> 'Eça de Queiroz', 'sales' => 200],['name'=> 'Henrique Roma', 'sales' => 300]], 'title' => 'Escritores'])
     @endcomponent
 
 </div>
+
+{{--  Row all writers  --}}
 
 <div class="row w-100 m-0 mt-4 pb-4 h-auto position-relative">
     <div class="jumbotron w-100 h-auto bg-transparent text-light position-relative">
@@ -120,6 +138,16 @@
             <a class="btn btn-primary btn-lg mt-4 font-weight-bold" href="#" role="button">Acesse</a>
         </div>
     </div>
+</div>
+
+{{--  Row best ranked publishing companies  --}}
+
+<div class="container mt-4">
+
+    {{--  import component rank  --}}
+    @component('components.rank', ['content' => [['name'=> 'Autografia', 'rate' => 2],['name'=> 'HarperCollins', 'rate' => 3],['name'=> 'Henrique Roma', 'rate' => 5]], 'title' => 'Editoras'])
+    @endcomponent
+
 </div>
 
 @endsection

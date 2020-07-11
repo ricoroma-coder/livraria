@@ -1,3 +1,4 @@
+{{--  implement carousel  --}}
 <div id="carouselIndicators" class="carousel position-relative slide border border-dark rounded p-2 h-100" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselIndicators"class="active"></li>

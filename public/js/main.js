@@ -1,6 +1,10 @@
+// config carousel
+
 $('.carousel').carousel({
   interval: 5000
 });
+
+// config document ready
 
 $(document).ready( function () {
   var timestamp = time_now();
