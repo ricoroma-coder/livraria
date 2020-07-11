@@ -1,8 +1,8 @@
-Instruções:
+## Instruções:
 
-Para implementar o projeto, alguns passos são necessários.
+- Para implementar o projeto, alguns passos são necessários.
 
-1º passo: Instale o comando composer na máquina, seguindo as instruções abaixo:
+- 1º passo: Instale o comando composer na máquina, seguindo as instruções abaixo:
 	## Linux e MacOS
 		- Abra o terminal de comando;
 		- Digite os comandos a seguir:
@@ -18,12 +18,12 @@ Para implementar o projeto, alguns passos são necessários.
 		- Execute o arquivo .exe;
 		- Instalado!
 
-2º passo: Instale o Laravel:
+- 2º passo: Instale o Laravel:
 	- Abra o terminal e execute o seguinte comando:
 		composer global require laravel/installer
 	- Instalado!
 
-3º passo: Instale o Git:
+- 3º passo: Instale o Git:
 	## Windows
 		- Baixe o setup do Git no link abaixo:
 			https://github.com/git-for-windows/git/releases/download/v2.27.0.windows.1/Git-2.27.0-64-bit.exe
@@ -47,37 +47,37 @@ Para implementar o projeto, alguns passos são necessários.
 				git config --global user.name "Seu nome"
 				git config --global user.email "seuemail@host.com"
 
-		## Linux (Debian/Ubuntu)
-			- Abra o terminal e execute os comandos:
-				Sudo apt-get update 
-				Sudo apt-get install git
-			- Confira se a instalação foi bem sucedida executando novamente o comando "git --version";
-			- Configure nome e email através dos comandos:
-				git config --global user.name "Seu nome"
-				git config --global user.email "seuemail@host.com"
+	## Linux (Debian/Ubuntu)
+        - Abra o terminal e execute os comandos:
+            Sudo apt-get update 
+            Sudo apt-get install git
+        - Confira se a instalação foi bem sucedida executando novamente o comando "git --version";
+        - Configure nome e email através dos comandos:
+            git config --global user.name "Seu nome"
+            git config --global user.email "seuemail@host.com"
 
-		## Linux (Fedora)
-			- Abra o terminal e execute um dos comandos abaixo:
-				Sudo dnf install git 
-				Sudo yum install git
-			- Confira se a instalação foi bem sucedida executando novamente o comando "git --version";
-			- Configure nome e email através dos comandos:
-				git config --global user.name "Seu nome"
-				git config --global user.email "seuemail@host.com"
+	## Linux (Fedora)
+        - Abra o terminal e execute um dos comandos abaixo:
+            Sudo dnf install git 
+            Sudo yum install git
+        - Confira se a instalação foi bem sucedida executando novamente o comando "git --version";
+        - Configure nome e email através dos comandos:
+            git config --global user.name "Seu nome"
+            git config --global user.email "seuemail@host.com"
 
-4º passo: Instale o XAMPP (apenas para acesso local, caso acesse de um servidor, pode pular essa etapa):
+- 4º passo: Instale o XAMPP (apenas para acesso local, caso acesse de um servidor, pode pular essa etapa):
 	- Acesse o link abaixo e faça o download:
 		https://www.apachefriends.org/pt_br/download.html
 	- Execute o setup e termine a instalação.
 	- Abra o xampp-control.exe e clique em "Start" nas opções "Apache" e "MySQL".
 
-5º passo: Clone o projeto do repositório GitHub:
+- 5º passo: Clone o projeto do repositório GitHub:
 	- Crie uma pasta em um servidor ou localmente na pasta htdocs do XAMPP chamada "livraria";
 	- Entre nessa pasta e clique com o botão direito;
 		- Selecione a opção "Git Bash Here"
 	- Execute o comando git clone https://github.com/ricoroma-coder/livraria
 
-6º passo: Crie um banco de dados chamado "livraria":
+- 6º passo: Crie um banco de dados chamado "livraria":
 	- Para acesso local:
 		- Abra o navegador e digite na barra de endereço "localhost/phpmyadmin"
 		- Clique em "Novo" no canto esquerdo da tela;
@@ -86,7 +86,7 @@ Para implementar o projeto, alguns passos são necessários.
 	- Para acesso remoto:
 		- Contacte sua empresa de hospedagem e solicite a criação de uma nova base de dados chamada "livraria".
 
-7º passo: Modifique o arquivo .env do projeto:
+- 7º passo: Modifique o arquivo .env do projeto:
 	- Entre no diretório do projeto e abra o arquivo .env;
 	- Modifique os seguintes campos do arquivo:
 		# Acesso local:
@@ -104,29 +104,43 @@ Para implementar o projeto, alguns passos são necessários.
 			DB_USERNAME={seu usuário}
 			DB_PASSWORD={sua senha}
 
-8º passo: Importe o banco de dados do projeto:
+- 8º passo: Importe o banco de dados do projeto:
 	- Abra o terminal de comando na pasta do projeto "livraria"
 	- Execute o comando abaixo:
 		php artisan migrate
 	- Feito!
 
-9º passo: Acesse seu projeto através de um navegador:
+- 9º passo: Acesse seu projeto através de um navegador:
 	# Acesso local com XAMPP:
 		localhost/livraria
 	# Acesso remoto:
 		seudominio.com/livraria
 
 
--- Para codificação
+## Para codificação
 
-=> Plataforma e Extensões
+- Tecnologias
+    - PHP7
+    - HTML5
+    - CSS3
+    - JavaScript
+
+- Frameworks
+    - Laravel v7.19
+    - Bootstrap v4.5
+    - jQuery v3.2
+
+- Banco de dados
+    - MySQL (via XAMPP)
+
+- Plataforma e Extensões
 	- O projeto foi codificado utilizando Visual Studio Code com extenções:
 		DotENV v1.0.1
 		Laravel 5 Snippets v2.0.1
 		Laravel Blade Snippets v1.22.1
 		PHP IntelliSense v2.3.14
 
-=> Git
+- Git
 	- Crie um repositório no GitHub sem o arquivo .gitignore
 	- Entre na pasta do projeto e clique com o botão direito:
 		Selecione "Git Bash Here"

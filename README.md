@@ -1,79 +1,156 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Instruções:
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+- Para implementar o projeto, alguns passos são necessários.
 
-## About Laravel
+- 1º passo: Instale o comando composer na máquina, seguindo as instruções abaixo:
+	## Linux e MacOS
+		- Abra o terminal de comando;
+		- Digite os comandos a seguir:
+			php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+			php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+			php composer-setup.php --install-dir=bin --filename=composer
+		- Configure o acesso ao composer de maneira global através do seguinte comando:
+			sudo mv composer.phar /usr/local/bin/composer
+		- Instalado!
+	## Windows
+		- Faça o download do setup no link a seguir:
+			https://getcomposer.org/Composer-Setup.exe
+		- Execute o arquivo .exe;
+		- Instalado!
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 2º passo: Instale o Laravel:
+	- Abra o terminal e execute o seguinte comando:
+		composer global require laravel/installer
+	- Instalado!
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- 3º passo: Instale o Git:
+	## Windows
+		- Baixe o setup do Git no link abaixo:
+			https://github.com/git-for-windows/git/releases/download/v2.27.0.windows.1/Git-2.27.0-64-bit.exe
+		- Execute o setup e finalize a instalação;
+		- Abra o terminal e configure nome e email através dos seguintes comandos:
+			git config --global user.name "Seu nome"
+			git config --global user.email "seuemail@host.com"
+		- Instalado!
+	
+	## MacOS
+		- Abra o terminal e confira a versão do git:
+			git --version
+		- Caso a resposta seja "git version 2.7.0 (Apple Git-66)" basta configurar nome e email através dos comandos:
+			git config --global user.name "Seu nome"
+			git config --global user.email "seuemail@host.com"
+		- Caso contrário:
+			- Faça o download do setup assistente em https://sourceforge.net/projects/git-osx-installer/files/;
+			- Execute o setup;
+			- Confira se a instalação foi bem sucedida executando novamente o comando "git --version";
+			- Configure nome e email através dos comandos:
+				git config --global user.name "Seu nome"
+				git config --global user.email "seuemail@host.com"
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+	## Linux (Debian/Ubuntu)
+        - Abra o terminal e execute os comandos:
+            Sudo apt-get update 
+            Sudo apt-get install git
+        - Confira se a instalação foi bem sucedida executando novamente o comando "git --version";
+        - Configure nome e email através dos comandos:
+            git config --global user.name "Seu nome"
+            git config --global user.email "seuemail@host.com"
 
-## Learning Laravel
+	## Linux (Fedora)
+        - Abra o terminal e execute um dos comandos abaixo:
+            Sudo dnf install git 
+            Sudo yum install git
+        - Confira se a instalação foi bem sucedida executando novamente o comando "git --version";
+        - Configure nome e email através dos comandos:
+            git config --global user.name "Seu nome"
+            git config --global user.email "seuemail@host.com"
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- 4º passo: Instale o XAMPP (apenas para acesso local, caso acesse de um servidor, pode pular essa etapa):
+	- Acesse o link abaixo e faça o download:
+		https://www.apachefriends.org/pt_br/download.html
+	- Execute o setup e termine a instalação.
+	- Abra o xampp-control.exe e clique em "Start" nas opções "Apache" e "MySQL".
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- 5º passo: Clone o projeto do repositório GitHub:
+	- Crie uma pasta em um servidor ou localmente na pasta htdocs do XAMPP chamada "livraria";
+	- Entre nessa pasta e clique com o botão direito;
+		- Selecione a opção "Git Bash Here"
+	- Execute o comando git clone https://github.com/ricoroma-coder/livraria
 
-## Laravel Sponsors
+- 6º passo: Crie um banco de dados chamado "livraria":
+	- Para acesso local:
+		- Abra o navegador e digite na barra de endereço "localhost/phpmyadmin"
+		- Clique em "Novo" no canto esquerdo da tela;
+		- No campo "Nome da base de dados" digite "livraria";
+		- Clique em "Criar";
+	- Para acesso remoto:
+		- Contacte sua empresa de hospedagem e solicite a criação de uma nova base de dados chamada "livraria".
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- 7º passo: Modifique o arquivo .env do projeto:
+	- Entre no diretório do projeto e abra o arquivo .env;
+	- Modifique os seguintes campos do arquivo:
+		# Acesso local:
+			DB_CONNECTION=mysql
+			DB_HOST=127.0.0.1
+			DB_PORT=3306
+			DB_DATABASE=livraria
+			DB_USERNAME=root
+			DB_PASSWORD=
+		# Acesso remoto
+			DB_CONNECTION={tipo de conexão}
+			DB_HOST={host do servidor}
+			DB_PORT={porta do host}
+			DB_DATABASE=livraria
+			DB_USERNAME={seu usuário}
+			DB_PASSWORD={sua senha}
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+- 8º passo: Importe o banco de dados do projeto:
+	- Abra o terminal de comando na pasta do projeto "livraria"
+	- Execute o comando abaixo:
+		php artisan migrate
+	- Feito!
 
-## Contributing
+- 9º passo: Acesse seu projeto através de um navegador:
+	# Acesso local com XAMPP:
+		localhost/livraria
+	# Acesso remoto:
+		seudominio.com/livraria
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## Para codificação
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Tecnologias
+    - PHP7
+    - HTML5
+    - CSS3
+    - JavaScript
 
-## Security Vulnerabilities
+- Frameworks
+    - Laravel v7.19
+    - Bootstrap v4.5
+    - jQuery v3.2
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Banco de dados
+    - MySQL (via XAMPP)
 
-## License
+- Plataforma e Extensões
+	- O projeto foi codificado utilizando Visual Studio Code com extenções:
+		DotENV v1.0.1
+		Laravel 5 Snippets v2.0.1
+		Laravel Blade Snippets v1.22.1
+		PHP IntelliSense v2.3.14
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Git
+	- Crie um repositório no GitHub sem o arquivo .gitignore
+	- Entre na pasta do projeto e clique com o botão direito:
+		Selecione "Git Bash Here"
+	- Execute os seguintes comandos:
+		git init
+		git remote add origin https://github.com/{seu usuário}/{seu repositório}
+		git add .
+		git commit -m "{Descrição do commit}"
+		git push -u origin master
+	- Para os próximos commits, basta executar os comandos:
+		git add .
+		git commit -m "{Descrição do commit}"
+		git push
