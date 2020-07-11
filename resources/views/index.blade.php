@@ -156,7 +156,7 @@
     @endcomponent
 
     {{--  import component bg  --}}
-    {{--  @component('components.bg')
-    @endcomponent  --}}
+    @component('components.bg')
+    @endcomponent
 
 @endsection

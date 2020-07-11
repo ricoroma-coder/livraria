@@ -1,5 +1,5 @@
 {{--  implement navbar footer  --}}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-5" id="footer">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="footer">
 
     {{--  grid system  --}}
     <div class="row w-100">
