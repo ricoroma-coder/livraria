@@ -24,3 +24,7 @@ Route::get('/autores', function () {
 Route::get('/livros', function () {
     return view('books');
 })->name('books');
+
+Route::get('/pub', function () {
+    return view('pub');
+})->name('pub');
