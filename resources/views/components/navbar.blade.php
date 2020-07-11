@@ -13,16 +13,16 @@
                 <a class="nav-link" href="{{ route('index') }}">Página Inicial</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Livros</a>
+            <li class="nav-item {{ request()->routeIs('books') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('books') }}">Livros</a>
             </li>
 
             <li class="nav-item {{ request()->routeIs('writers') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('writers') }}">Autores</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Editoras</a>
+            <li class="nav-item {{ request()->routeIs('pub') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pub') }}">Editoras</a>
             </li>
 
             <li class="nav-item">

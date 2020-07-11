@@ -13,18 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', 'ViewControl@index')->name('index');
 
-Route::get('/autores', function () {
-    return view('writers');
-})->name('writers');
+Route::get('/autores', 'ViewControl@writer')->name('writers');
 
-Route::get('/livros', function () {
-    return view('books');
-})->name('books');
+Route::get('/livros', 'ViewControl@book')->name('books');
 
-Route::get('/pub', function () {
-    return view('pub');
-})->name('pub');
+Route::get('/editoras', 'ViewControl@pub')->name('pub');
