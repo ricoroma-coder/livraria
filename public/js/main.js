@@ -14,6 +14,35 @@ $(document).ready( function () {
   }
 });
 
+// nav Navigation
+$('#navigation .nav-link').click( function (e) {
+  e.preventDefault();
+  $(this).parents('.nav-item').siblings().removeClass('active');
+  $(this).parents('.nav-item').addClass('active');
+  var id = $(this).attr('href'),
+  li = $('#navigation .nav-link'),
+  array = [];
+
+  li.each( function (index, value)  {
+    array.push($(value).attr('href'));
+  });
+  
+  array.splice( $.inArray(id, array), 1 );
+
+  var i = 0;
+
+  for (i = 0; i < array.length; i++) {
+    var div = $(array[i]).parents('.row');
+    div.addClass('navHidden');
+    if (div.hasClass('inData'))
+      div.removeClass('inData');
+  }
+  var inData = $(id).parents('.row');
+  if (inData.hasClass('navHidden'))
+    inData.removeClass('navHidden');
+  inData.addClass('inData');
+});
+
 // Functions
 
 function time_now() {
@@ -39,8 +68,6 @@ function formatDate (date, time) {
     if (time[i].length == 1)
       time[i] = '0'+time[i];
   }
-
-  console.log([date,time]);
 
   return [date,time];
 }

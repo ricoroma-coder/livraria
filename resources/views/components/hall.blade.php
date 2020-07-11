@@ -6,7 +6,7 @@
 </div>
 
 {{--  row card-deck  --}}
-<div class="row m-0 w-100 h-auto">
+<div class="row m-0 w-100 h-auto" id="hall">
     {{--  using $title  --}}
     <p class="title">Top {{ $title }}</p>
 

@@ -2,7 +2,7 @@
 {{--  implement rank  --}}
 <div class="row m-0 mt-0 pt-4 w-100 h-auto p-2" id="rank">
     {{--  using $title  --}}
-    <p class="title">{{ $title }} Top Rankeadas</p>
+    <p class="title">{{ $title }} Top Rank</p>
 
     {{--  open card-deck  --}}
     <div class="card-deck h-auto w-100 flex-column">

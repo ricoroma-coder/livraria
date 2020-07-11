@@ -139,10 +139,43 @@
 
 #rank {
     background: rgb(249,182,105);
-background: linear-gradient(241deg, rgba(249,182,105,1) 0%, 
+    background: linear-gradient(241deg, rgba(249,182,105,1) 0%, 
                                 rgba(246,207,35,1) 18%, 
                                 rgba(242,255,93,1) 55%, 
                                 rgba(255,237,0,1) 89%);
+}
+
+/* ==== Navigation ==== */
+
+div.navHidden {
+    /* height: 0;
+    width: 0; */
+    display: none;
+    transition: display 1s;
+    -moz-transition: display 1s;
+    -webkit-transition: display 1s;
+}
+
+div.inData {
+    /* height: auto;
+    width: 100%; */
+    display: block;
+    transition: display 1s;
+    -moz-transition: display 1s;
+    -webkit-transition: display 1s;
+}
+
+#navigation .nav-item {
+
+}
+
+#navigation .nav-item.active {
+    background: rgb(249,182,105);
+    background: linear-gradient(241deg, rgba(249,182,105,1) 0%, 
+                                rgba(246,207,35,1) 18%, 
+                                rgba(242,255,93,1) 55%, 
+                                rgba(255,237,0,1) 89%);
+    opacity: 0.8;
 }
 
 /* ==== endComponents ==== */
