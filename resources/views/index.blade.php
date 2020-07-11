@@ -128,8 +128,8 @@
 
 {{--  Row all writers  --}}
 
-<div class="row w-100 m-0 mt-4 pb-4 h-auto position-relative">
-    <div class="jumbotron w-100 h-auto bg-transparent text-light position-relative">
+<div class="row w-100 m-0 mb-0 mt-4 h-auto position-relative">
+    <div class="jumbotron w-100 h-auto mb-0 bg-transparent text-light position-relative">
         <div class="bg-std bg-writers"></div>
         <div class="bg-std bg-dark" style="opacity: 0.5; z-index: -1;"></div>
         <h1 class="display-3 text-warning font-weight-bold">Autores</h1>
@@ -141,13 +141,22 @@
 </div>
 
 {{--  Row best ranked publishing companies  --}}
-
-<div class="container mt-4">
-
     {{--  import component rank  --}}
-    @component('components.rank', ['content' => [['name'=> 'Autografia', 'rate' => 2],['name'=> 'HarperCollins', 'rate' => 3],['name'=> 'Henrique Roma', 'rate' => 5]], 'title' => 'Editoras'])
+    {{--  parameters = content e title 
+    content = [
+        [
+            'name' => {value},
+            'books' => {count(books)},
+            'rate' => {rate}
+        ],
+        ...
+    ]
+    title = string title  --}}
+    @component('components.rank', ['content' => [['name'=> 'Saraiva', 'books' => 200, 'rate' => 1],['name'=> 'Autografia', 'books' => 200, 'rate' => 2],['name'=> 'HarperCollins', 'books' => 200, 'rate' => 3],['name'=> 'Henrique Roma', 'books' => 200, 'rate' => 4]], 'title' => 'Editoras'])
     @endcomponent
 
-</div>
+    {{--  import component bg  --}}
+    {{--  @component('components.bg')
+    @endcomponent  --}}
 
 @endsection
