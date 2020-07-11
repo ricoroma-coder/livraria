@@ -9,7 +9,7 @@
     ];
 @endphp
 
-<div class="row m-0 w-100 h-100 p-4" id="all">
+<div class="row m-0 w-100 h-100 p-4 text-center" id="all">
 
     @if ($modify)
         
@@ -29,11 +29,9 @@
                 <th>{{ ucfirst($key) }}</th>
 
             @endforeach
-            @if ($modify)
 
-                <th class="actions">Ações</th>
+            <th class="actions">Ações</th>
 
-            @endif
             </tr>
         </thead>
         <tbody>
@@ -51,6 +49,11 @@
                         <td>
                             <a href="#" class="btn btn-primary btn-sm">Mudar</a>
                             <a href="#" class="btn btn-danger btn-sm">Apagar</a>
+                        </td>
+                    @else
+
+                        <td>
+                            <a href="#" class="btn btn-primary btn-sm">Informações</a>
                         </td>
 
                     @endif

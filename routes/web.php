@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/autores', function () {
     return view('writers');
 })->name('writers');
+
+Route::get('/livros', function () {
+    return view('books');
+})->name('books');
