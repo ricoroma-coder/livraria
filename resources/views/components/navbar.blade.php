@@ -17,8 +17,8 @@
                 <a class="nav-link" href="#">Livros</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Autores</a>
+            <li class="nav-item {{ request()->routeIs('writers') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('writers') }}">Autores</a>
             </li>
 
             <li class="nav-item">

@@ -135,7 +135,7 @@
         <h1 class="display-3 text-warning font-weight-bold">Autores</h1>
         <p class="lead font-weight-bold">Confira a lista completa dos autores disponíveis em nossa loja clicando no botão.</p>
         <div class="h-auto text-center">
-            <a class="btn btn-primary btn-lg mt-4 font-weight-bold" href="#" role="button">Acesse</a>
+            <a class="btn btn-primary btn-lg mt-4 font-weight-bold" href="{{ route('writers') }}" role="button">Acesse</a>
         </div>
     </div>
 </div>
