@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableCompsBooksWriters extends Migration
+class AddFieldClicksToPubCompanies extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTableCompsBooksWriters extends Migration
      */
     public function up()
     {
-        Schema::create('comps_books_writers', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_book');
-            $table->bigInteger('id_writer');
-            $table->bigInteger('id_pub');
-            $table->timestamps();
+        Schema::table('pub_companies', function (Blueprint $table) {
+            $table->integer('clicks');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateTableCompsBooksWriters extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comps_books_writers');
+        Schema::table('pub_companies', function (Blueprint $table) {
+            $table->dropColumn('clicks');
+        });
     }
 }
