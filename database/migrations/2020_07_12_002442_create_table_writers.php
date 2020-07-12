@@ -15,7 +15,7 @@ class CreateTableWriters extends Migration
     {
         Schema::create('writers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 100);
             $table->date('birth')->nullable();
             $table->date('death')->nullable();
             $table->text('description')->nullable();
@@ -31,6 +31,6 @@ class CreateTableWriters extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_writers');
+        Schema::dropIfExists('writers');
     }
 }

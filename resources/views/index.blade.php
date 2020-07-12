@@ -48,7 +48,7 @@
                 <img class="card-img-top w-100" src="{{ asset('img/bg-image.jpg') }}" alt="ImgCadLivro">
                 <div class="card-body w-100 text-center">
                     <p class="card-text text-left">Consulte nossa grande biblioteca de livros disponíveis na loja</p>
-                    <a href="#" class="btn btn-primary">Consultar</a>
+                    <a href="{{ route('books') }}" class="btn btn-primary">Consultar</a>
                 </div>
             </div>
 

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PubCompany;
+use App\Book;
+use App\Writer;
+use App\CompBookWriter;
 
 class ViewControl extends Controller
 {

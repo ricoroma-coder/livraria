@@ -17,7 +17,7 @@ class CreateTableBooks extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('isbn', 20);
-            $table->date('year');
+            $table->integer('year');
             $table->bigInteger('id_writer');
             $table->bigInteger('id_pub');
             $table->integer('rate');
@@ -34,6 +34,6 @@ class CreateTableBooks extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_books');
+        Schema::dropIfExists('books');
     }
 }
