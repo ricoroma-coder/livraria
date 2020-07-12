@@ -15,6 +15,9 @@ class CreateTableCompsBooksWriters extends Migration
     {
         Schema::create('table_comps_books_writers', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_book');
+            $table->bigInteger('id_writer');
+            $table->bigInteger('id_pub');
             $table->timestamps();
         });
     }

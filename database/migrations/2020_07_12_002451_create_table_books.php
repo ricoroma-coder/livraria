@@ -13,9 +13,17 @@ class CreateTableBooks extends Migration
      */
     public function up()
     {
-        Schema::create('table_books', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 100);
+            $table->string('isbn', 20);
+            $table->date('year');
+            $table->bigInteger('id_writer');
+            $table->bigInteger('id_pub');
+            $table->integer('rate');
+            $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

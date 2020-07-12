@@ -13,9 +13,12 @@ class CreateTablePubComps extends Migration
      */
     public function up()
     {
-        Schema::create('table_pub_comps', function (Blueprint $table) {
+        Schema::create('pub_comps', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

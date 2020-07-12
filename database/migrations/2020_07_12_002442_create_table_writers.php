@@ -13,9 +13,14 @@ class CreateTableWriters extends Migration
      */
     public function up()
     {
-        Schema::create('table_writers', function (Blueprint $table) {
+        Schema::create('writers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->date('birth')->nullable();
+            $table->date('death')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
