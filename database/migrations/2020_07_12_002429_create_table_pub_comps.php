@@ -13,7 +13,7 @@ class CreateTablePubComps extends Migration
      */
     public function up()
     {
-        Schema::create('pub_comps', function (Blueprint $table) {
+        Schema::create('pub_companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
