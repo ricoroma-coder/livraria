@@ -64,55 +64,68 @@
     <div class="bg-dark w-100 h-100 position-absolute" style="z-index: 0; opacity:0.5;"></div>
 
     <div class="card-deck h-auto w-auto mr-auto ml-auto">
-        <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
-            <img src="{{ asset('img/livro1.jpg') }}" class="card-img-top h-50" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text update-field"></p>
+
+        @php
+            $count = 0;
+        @endphp
+
+        @foreach ($clicks as $value)
+
+            @php
+                $count++;
+            @endphp
+
+            <div class="card h-auto p-1 ml-auto mr-auto mt-2" style="min-height:350px;max-width: 30.7%">
+                <img src="{{ asset('img/books/'.$value->id.'/thumb.jpg') }}" class="card-img-top h-50" alt="{{ $value->name }}">
+                <div class="card-body h-50">
+                    <div class="h-100">
+                        <div class="row m-0 h-25">
+                            <h5 class="card-title">{{ $value->name }}</h5>
+                        </div>
+
+                        <div class="row m-0 h-50">
+
+                            @if (isset($value->description) && !empty($value->description))
+
+                                <div class="m-0 overflow-hidden mh-100 position-relative">
+                                    <p class="card-text">{{ $value->description }}</p>
+                                    <div class="position-absolute" style="bottom:0;right:0;">
+                                        <a href="#" class="btn btn-sm border border-dark bg-light">Leia mais...</a>
+                                    </div>
+                                </div>
+
+                            @else
+
+                                <div class="m-0 overflow-hidden mh-100 position-relative">
+                                    <p class="card-text">Esse livro foi registrado sem nenhuma descrição</p>
+                                </div>
+
+                            @endif
+
+                        </div>
+
+                        <div class="row m-0 pt-auto h-25 w-100">
+                            <div class="row m-0 w-100">
+                                <a href="#" class="btn btn-primary btn-sm h-auto mt-auto ml-auto">Acessar</a>
+                            </div>
+
+                            <div class="row m-0 w-100">
+                                <p class="card-text update-field mt-auto ml-auto"></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
-            <img src="{{ asset('img/livro2.jpg') }}" class="card-img-top h-50" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text update-field"></p>
-            </div>
-        </div>
-        <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
-            <img src="{{ asset('img/livro3.jpg') }}" class="card-img-top h-50" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text update-field"></p>
-            </div>
-        </div>
-        <div class="w-100 m-1"></div>
-        <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
-            <img src="{{ asset('img/livro1.jpg') }}" class="card-img-top h-50" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text update-field"></p>
-            </div>
-        </div>
-        <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
-            <img src="{{ asset('img/livro2.jpg') }}" class="card-img-top h-50" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text update-field"></p>
-            </div>
-        </div>
-        <div class="card h-auto p-1 ml-auto mr-auto" style="max-width: 30.7%">
-            <img src="{{ asset('img/livro3.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text update-field"></p>
-            </div>
-        </div>
+
+            @if ($count == 3)
+                
+                <div class="w-100"></div>
+
+            @endif
+            
+        @endforeach
+
     </div> 
 </div>
 
