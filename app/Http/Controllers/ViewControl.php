@@ -15,8 +15,11 @@ class ViewControl extends Controller
 
     public function index()
     {
-        
-        return view('index', compact('clicks', 'writers_hall'));
+        $books = Book::prepareToIndex();
+        $pubs = PubCompany::prepareToIndex();
+        $writers = Writer::prepareToIndex();
+
+        return view('index', compact('books', 'pubs', 'writers'));
     }
 
     public function writer()

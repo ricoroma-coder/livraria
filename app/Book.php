@@ -4,29 +4,35 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 require_once __DIR__."/Functions.php";
 
 class Book extends Model
 {
     use SoftDeletes;
 
-    public function prepareToIndex() {
+    public static function prepareToIndex() {
         // clicks
         $clicks = DB::table('books')->orderBy('clicks', 'desc')->take(6)->get();
 
+        //rank
+        $rank = DB::table('books')->orderBy('rate', 'desc')->take(6)->get();
+
         //hall
-        $hall = DB::table('books')->get();
+        $hall = Book::fillHall($rank);
+
+        return compact('clicks','hall','rank');
+    }
+
+    public static function fillHall ($objects) {
         $array = [];
-        foreach ($hall as $value) {
-            $array[] = [
-                'obj' => $value,
-                'count' => DB::table('books')->where('id_writer', $value->id)->count()
-            ];
+        foreach ($objects as $value) {
+            $array[] = $value['clicks'] + $value['rate'];
         }
-        $array = orderArraysByKey($array, 'count');
+        $array = orderArrayValues($array);
         $hall = maxIndex($array, 3);
 
-        //rank
-        $clicks = DB::table('books')->orderBy('rate', 'desc')->take(6)->get();
+        return $hall;
     }
+
 }

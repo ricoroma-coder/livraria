@@ -1,6 +1,7 @@
 <?php
 
-function orderArraysByKey ($matriz, $key) {
+function orderArraysByKey ($matriz, $key = '') {
+    
     for ($i = 1; $i < sizeof($matriz); $i++) {
         if ($matriz[$i][$key] > $matriz[$i-1][$key]) {
             $aux = $matriz[$i-1];
@@ -11,6 +12,19 @@ function orderArraysByKey ($matriz, $key) {
     }
 
     return $matriz;
+}
+
+function orderArrayValues ($array) {
+    for ($i = 1; $i < sizeof($array); $i++) {
+        if ($array[$i] > $array[$i-1]) {
+            $aux = $array[$i-1];
+            $array[$i-1] = $array[$i];
+            $array[$i] = $aux;
+            $i--;
+        }
+    }
+
+    return $array;
 }
 
 function maxIndex ($matriz, $max_index) {
