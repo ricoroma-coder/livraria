@@ -29,6 +29,6 @@ class CreateTablePubComps extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_pub_comps');
+        Schema::dropIfExists('pub_companies');
     }
 }

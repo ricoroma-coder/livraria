@@ -13,7 +13,7 @@ class CreateTableCompsBooksWriters extends Migration
      */
     public function up()
     {
-        Schema::create('table_comps_books_writers', function (Blueprint $table) {
+        Schema::create('comps_books_writers', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_book');
             $table->bigInteger('id_writer');
@@ -29,6 +29,6 @@ class CreateTableCompsBooksWriters extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_comps_books_writers');
+        Schema::dropIfExists('comps_books_writers');
     }
 }
