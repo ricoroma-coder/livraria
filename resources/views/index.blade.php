@@ -60,7 +60,7 @@
 
 <div class="row w-100 m-0 pb-4 mt-4 position-relative" style="height: auto;">
     <p class="title text-warning">Livros mais acessados</p>
-    <div class="bg-image w-100 h-100 position-absolute" style="z-index: -1;background-size:inherit;"></div>
+    <div class="bg-image w-100 h-100 position-absolute" style="z-index: -1;"></div>
     <div class="bg-dark w-100 h-100 position-absolute" style="z-index: 0; opacity:0.5;"></div>
 
     <div class="card-deck h-auto w-auto mr-auto ml-auto">

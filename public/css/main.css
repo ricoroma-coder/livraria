@@ -165,10 +165,6 @@ div.inData {
     -webkit-transition: display 1s;
 }
 
-#navigation .nav-item {
-
-}
-
 #navigation .nav-item.active {
     background: rgb(249,182,105);
     background: linear-gradient(241deg, rgba(249,182,105,1) 0%, 
