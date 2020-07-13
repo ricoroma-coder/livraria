@@ -25,12 +25,12 @@
 }
 
 .bg-writers {
-    background-image: url('../img/bg-writers.jpg');
+    background-image: url('../storage/img/bg-writers.jpg');
     z-index: -2;
 }
 
 .bg-image {
-    background-image: url('../img/bg-image.jpg');
+    background-image: url('../storage/img/bg-image.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 1;
@@ -47,7 +47,7 @@
 }
 
 .bg-hall {
-    background-image: url('../img/decoration/hall.png');
+    background-image: url('../storage/img/decoration/hall.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 100px;
@@ -118,19 +118,19 @@
 }
 
 .heroes.hero-1 {
-    background-image: url('../img/decoration/hero-1.png');
+    background-image: url('../storage/img/decoration/hero-1.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
 
 .heroes.hero-2 {
-    background-image: url('../img/decoration/hero-2.png');
+    background-image: url('../storage/img/decoration/hero-2.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
 
 .heroes.hero-3 {
-    background-image: url('../img/decoration/hero-3.png');
+    background-image: url('../storage/img/decoration/hero-3.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }

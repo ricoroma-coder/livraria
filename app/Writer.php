@@ -5,35 +5,48 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class Writer extends Model
 {
     use SoftDeletes;
 
+    public static function getAll() {
+        $collection = Writer::all();
+
+        foreach ($collection as $value) {
+            $path = 'img/writers/'.$value->id.'/thumb.jpg';
+            if (Storage::disk('public')->exists($path))
+                $value->image = asset('/storage/'.$path);
+            else
+                $value->image = asset('/storage/img/writers/thumb-default.jpg');
+        }
+
+        return $collection;
+
+    }
+
     public static function prepareToIndex() {
-        // clicks
-        $clicks = DB::table('writers')->orderBy('clicks', 'desc')->take(6)->get();
+        $writers = Writer::getAll();
 
-        //hall
-        $hall = Writer::fillHall();
+        $rank = $writers->sortByDesc('rate')->all();
+        $rank = maxIndex($rank, 6);
 
-        //rank
-        $rank = DB::table('writers')->orderBy('rate', 'desc')->take(6)->get();
+        $hall = Writer::fillHall($writers);
+
+        $clicks = $writers->sortByDesc('rate')->all();
+        $clicks = maxIndex($clicks, 6);
 
         return compact('clicks','hall','rank');
     }
 
-    public static function fillHall () {
-        $hall = DB::table('writers')->get();
-        $array = [];
-        foreach ($hall as $value) {
-            $array[] = [
-                'obj' => $value,
-                'count' => DB::table('books')->where('id_writer', $value->id)->count()
-            ];
+    public static function fillHall ($all) {
+        foreach ($all as $value) {
+            $value->count = DB::table('books')->where('id_writer', $value->id)->count();
         }
-        $array = orderArraysByKey($array, 'count');
-        $hall = maxIndex($array, 3);
+
+        $hall = $all->sortByDesc('count')->all();
+        $hall = maxIndex($hall, 3);
 
         return $hall;
     }

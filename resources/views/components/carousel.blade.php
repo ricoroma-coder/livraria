@@ -7,13 +7,13 @@
     </ol>
     <div class="carousel-inner h-100">
         <div class="carousel-item active">
-            <img src="{{ asset('img/livro1.jpg') }}" class="d-block w-100" alt="Livro 1">
+            <img src="{{ asset('storage/img/livro1.jpg') }}" class="d-block w-100" alt="Livro 1">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('img/livro2.jpg') }}" class="d-block w-100" alt="Livro 2">
+            <img src="{{ asset('storage/img/livro2.jpg') }}" class="d-block w-100" alt="Livro 2">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('img/livro3.jpg') }}" class="d-block w-100" alt="Livro 3">
+            <img src="{{ asset('storage/img/livro3.jpg') }}" class="d-block w-100" alt="Livro 3">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">

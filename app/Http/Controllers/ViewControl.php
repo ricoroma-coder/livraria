@@ -19,7 +19,13 @@ class ViewControl extends Controller
         $pubs = PubCompany::prepareToIndex();
         $writers = Writer::prepareToIndex();
 
-        return view('index', compact('books', 'pubs', 'writers'));
+        $content = [
+            'books' => $books,
+            'pubs' => $pubs,
+            'writers' => $writers
+        ];
+
+        return view('index', compact('content'));
     }
 
     public function writer()

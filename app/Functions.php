@@ -28,8 +28,9 @@ function orderArrayValues ($array) {
 }
 
 function maxIndex ($matriz, $max_index) {
+    $max = (sizeof($matriz) < $max_index) ? sizeof($matriz) : $max_index;
     $array = [];
-    for ($i = 0; $i < $max_index; $i++) {
+    for ($i = 0; $i < $max; $i++) {
         $array[] = $matriz[$i];
     }
     return $array;

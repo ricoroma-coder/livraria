@@ -5,35 +5,50 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class PubCompany extends Model
 {
     use SoftDeletes;
 
-    public static function prepareToIndex() {
-        // clicks
-        $clicks = DB::table('pub_companies')->orderBy('clicks', 'desc')->take(6)->get();
+    public static function getAll() {
+        $collection = PubCompany::all();
 
-        //hall
+        foreach ($collection as $value) {
+            $path = 'img/pubs/'.$value->id.'/thumb.jpg';
+            if (Storage::disk('public')->exists($path))
+                $value->image = asset('/storage/'.$path);
+            else
+                $value->image = asset('/storage/img/pubs/thumb-default.jpg');
+        }
+
+        return $collection;
+
+    }
+
+    public static function prepareToIndex() {
+        $pubs = PubCompany::getAll();
+
+        $rank = $pubs->sortByDesc('rate')->all();
+        $rank = maxIndex($rank, 6);
+
         $hall = PubCompany::fillHall();
 
-        //rank
-        $rank = DB::table('pub_companies')->orderBy('rate', 'desc')->take(6)->get();
+        $clicks = $pubs->sortByDesc('rate')->all();
+        $clicks = maxIndex($clicks, 6);
 
         return compact('clicks','hall','rank');
     }
 
     public static function fillHall () {
-        $hall = DB::table('pub_companies')->get();
-        $array = [];
-        foreach ($hall as $value) {
-            $array[] = [
-                'obj' => $value,
-                'count' => DB::table('books')->where('id_pub', $value->id)->count()
-            ];
+        $objs = PubCompany::all();
+
+        foreach ($objs as $value) {
+            $value->count = DB::table('books')->where('id_pub', $value->id)->count();
         }
-        $array = orderArraysByKey($array, 'count');
-        $hall = maxIndex($array, 3);
+
+        $hall = $objs->sortByDesc('count')->all();
+        $hall = maxIndex($hall, 3);
 
         return $hall;
     }
