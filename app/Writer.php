@@ -26,18 +26,21 @@ class Writer extends Model
 
     }
 
-    public static function prepareToIndex() {
-        $writers = Writer::getAll();
+    public static function prepareToIndex($current = 'main') {
+        $all = Writer::getAll();
 
-        $rank = $writers->sortByDesc('rate')->all();
+        $rank = $all->sortByDesc('rate')->all();
         $rank = maxIndex($rank, 6);
 
-        $hall = Writer::fillHall($writers);
+        $hall = Writer::fillHall($all);
 
-        $clicks = $writers->sortByDesc('rate')->all();
+        $clicks = $all->sortByDesc('rate')->all();
         $clicks = maxIndex($clicks, 6);
 
-        return compact('clicks','hall','rank');
+        if ($current == 'main')
+            return compact('clicks','hall','rank');
+        else
+            return compact('all','hall','rank');
     }
 
     public static function fillHall ($all) {

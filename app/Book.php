@@ -28,27 +28,26 @@ class Book extends Model
 
     }
 
-    public static function prepareToIndex() {
-        $books = Book::getAll();
+    public static function prepareToIndex($current = 'main') {
+        $all = Book::getAll();
 
-        $rank = $books->sortByDesc('rate')->all();
-        $rank = maxIndex($rank, 6);
+        $rank = $all->sortByDesc('rate')->take(6);
 
-        $hall = Book::fillHall($rank);
+        $hall = Book::fillHall($all);
 
-        $clicks = $books->sortByDesc('rate')->all();
-        $clicks = maxIndex($clicks, 6);
+        $clicks = $all->sortByDesc('clicks')->take(6);
 
-        return compact('clicks','hall','rank');
+        if ($current == 'main')
+            return compact('clicks','hall','rank');
+        else
+            return compact('all','hall','rank');
     }
 
     public static function fillHall ($objects) {
-        $array = [];
         foreach ($objects as $value) {
-            $array[] = $value->clicks + $value->rate;
+            $value->count = ($value->rate/$value->clicks)*100;
         }
-        $array = orderArrayValues($array);
-        $hall = maxIndex($array, 3);
+        $hall = $objects->sortByDesc('count')->take(3);
 
         return $hall;
     }

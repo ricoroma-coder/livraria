@@ -30,16 +30,19 @@ class ViewControl extends Controller
 
     public function writer()
     {
-        return view('writers');
+        $content = Writer::prepareToIndex('all');
+        return view('writers', compact('content'));
     }
 
     public function book()
     {
-        return view('books');
+        $content = Book::prepareToIndex('all');
+        return view('books', compact('content'));
     }
 
     public function pub()
     {
-        return view('pub');
+        $content = PubCompany::prepareToIndex('all');
+        return view('pub', compact('content'));
     }
 }

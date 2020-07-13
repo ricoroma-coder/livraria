@@ -1,15 +1,8 @@
 {{--  listing $content  --}}
 
-@php
-    $thead = ['Código', 'Nome', 'Idade'];
-    $content = [
-        ['id'=>1,'name'=> 'Machado de Assis', 'idade' => 19],
-        ['id'=>2,'name'=> 'Machado de Assis', 'idade' => 19],
-        ['id'=>3,'name'=> 'Machado de Assis', 'idade' => 19]
-    ];
-@endphp
+<div class="row m-0 w-100 h-auto p-4 text-center" id="all">
 
-<div class="row m-0 w-100 h-100 p-4 text-center" id="all">
+    {{ $slot }}
 
     @if ($modify)
         
@@ -22,27 +15,16 @@
     @if (isset($content) || !empty($content))
 
     <table class="table table-hover">
-        <thead class="text-light bg-dark">
-            <tr>
-            @foreach ($thead as $key)
-
-                <th>{{ ucfirst($key) }}</th>
-
-            @endforeach
-
-            <th class="actions">Ações</th>
-
-            </tr>
-        </thead>
         <tbody>
             
             @foreach ($content as $value)
             
-                <tr value="{{ $value['id'] }}">
+                <tr value="{{ $value->id }}">
                         
-                    <td>{{ $value['id'] }}</td>
-                    <td>{{ $value['name'] }}</td>
-                    <td>{{ $value['idade'] }}</td>
+                    <td class="w-25"><img style="height: 200px;max-height: 200px;" class="h-100 w-100" src="{{ $value->image }}" alt="{{ $value->name }}"></td>
+                    <td class="w-25 pt-5"><h4>{{ $value->name }}</h4></td>
+                    <td class="w-25 pt-5">{{ $value->clicks }} cliques</td>
+                    <td class="w-25 pt-5">Clas: {{ ($value->rate/4)*100 }}%</td>
 
                     @if ($modify)
                         
@@ -52,7 +34,7 @@
                         </td>
                     @else
 
-                        <td>
+                        <td class="w-25 pt-5">
                             <a href="#" class="btn btn-primary btn-sm">Informações</a>
                         </td>
 

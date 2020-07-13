@@ -11,7 +11,7 @@
             {{--  adding cards with $content  --}}
             @foreach ($content as $value)
 
-                <div class="card mb-3 w-100 h-auto border-right border-dark bg-dark text-light p-1" style="max-height: 150px;">
+                <div class="card mb-3 w-100 h-auto border-right border-dark bg-dark text-light p-1" style="max-height: 200px;">
                     <div class="row no-gutters h-100">
                         <div class="col-md-4 h-100">
                             <img src="{{ $value->image }}" class="card-img h-100" alt="{{ $value->name }}">
@@ -33,9 +33,9 @@
                                         }
                                         else if ($rate <= 25)
                                             $status = ['rate'=>'Ruim','bg'=>'bg-danger'];
-                                        else if ($rate <=50)
+                                        else if ($rate <= 50)
                                             $status = ['rate'=>'Razoável','bg'=>'bg-warning'];
-                                        else if ($rate <=75)
+                                        else if ($rate <= 75)
                                             $status = ['rate'=>'Bom','bg'=>'bg-success'];
                                         else
                                             $status = ['rate'=>'Muito bom','bg'=>'bg-primary'];

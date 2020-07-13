@@ -29,7 +29,11 @@
                     <img src="{{ $value->image }}" class="card-img-top h-50" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ $value->name }}</h5>
-                        <p class="card-text">Possui {{ $value->count }} {{ ($value->count > 1) ? 'obras' : 'obra' }} em nossa loja</p>
+                        @if (isset($book))
+                            <p class="card-text">Taxa média de acessos: {{ $value->count }}%</p>
+                        @else
+                            <p class="card-text">Possui {{ $value->count }} {{ ($value->count > 1) ? 'obras' : 'obra' }} em nossa loja</p>
+                        @endif
                         <a href="#" class="btn btn-primary">Conheça</a>
                         <p class="card-text update-field text-light"></p>
                     </div>

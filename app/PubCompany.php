@@ -26,28 +26,29 @@ class PubCompany extends Model
 
     }
 
-    public static function prepareToIndex() {
-        $pubs = PubCompany::getAll();
+    public static function prepareToIndex($current = 'main') {
+        $all = PubCompany::getAll();
 
-        $rank = $pubs->sortByDesc('rate')->all();
+        $rank = $all->sortByDesc('rate')->all();
         $rank = maxIndex($rank, 6);
 
-        $hall = PubCompany::fillHall();
+        $hall = PubCompany::fillHall($all);
 
-        $clicks = $pubs->sortByDesc('rate')->all();
+        $clicks = $all->sortByDesc('rate')->all();
         $clicks = maxIndex($clicks, 6);
 
-        return compact('clicks','hall','rank');
+        if ($current == 'main')
+            return compact('clicks','hall','rank');
+        else
+            return compact('all','hall','rank');
     }
 
-    public static function fillHall () {
-        $objs = PubCompany::all();
-
-        foreach ($objs as $value) {
+    public static function fillHall ($all) {
+        foreach ($all as $value) {
             $value->count = DB::table('books')->where('id_pub', $value->id)->count();
         }
 
-        $hall = $objs->sortByDesc('count')->all();
+        $hall = $all->sortByDesc('count')->all();
         $hall = maxIndex($hall, 3);
 
         return $hall;
