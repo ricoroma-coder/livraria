@@ -17,7 +17,8 @@
         </div>
 
         <div class="row m-0 w-100">
-            @component('components.list', ['content' => $content])
+            @component('components.list', ['content' => $content, 'modify' => true])
+            @endcomponent
         </div>
     </div>
 

@@ -1,5 +1,4 @@
 {{--  listing $content  --}}
-
 <div class="row m-0 w-100 h-auto p-4 text-center" id="all">
 
     {{ $slot }}

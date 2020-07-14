@@ -15,7 +15,7 @@ class PubCompany extends Model
         if (!$trashed)
             $collection = PubCompany::all();
         else
-            $collection = PubCompany::withTrashed();
+            $collection = PubCompany::withTrashed()->get();
 
         foreach ($collection as $value) {
             $path = 'img/pubs/'.$value->id.'/thumb.jpg';
