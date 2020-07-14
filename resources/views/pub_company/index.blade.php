@@ -17,7 +17,7 @@
         </div>
 
         <div class="row m-0 w-100">
-            @component('components.list', ['content' => $content, 'modify' => true])
+            @component('components.list', ['content' => $content, 'modify' => true, 'route' => route('dashPubs.create')])
             @endcomponent
         </div>
     </div>

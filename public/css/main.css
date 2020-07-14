@@ -305,6 +305,13 @@ div.inData {
 
 /* ==== endComponents ==== */
 
+/* ==== Form Image Holder ==== */
+
+#image {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 
 /* ==== General ==== */
 

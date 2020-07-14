@@ -25,7 +25,7 @@ class PubControl extends Controller
      */
     public function create()
     {
-        //
+        return view('pub_company.register');
     }
 
     /**

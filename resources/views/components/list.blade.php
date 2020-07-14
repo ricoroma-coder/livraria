@@ -6,7 +6,7 @@
     @if ($modify)
         
         <div class="row m-0 mt-2 mb-2 w-100 h-auto">
-            <a href="#" class="btn btn-primary ml-auto">Novo</a>
+            <a href="{{ $route }}" class="btn btn-primary ml-auto">Novo</a>
         </div>
 
     @endif
@@ -27,7 +27,7 @@
 
                     @if ($modify)
                         
-                        <td>
+                        <td class="w-25 pt-4">
                             <a href="#" class="btn btn-primary btn-sm">Mudar</a>
                             <a href="#" class="btn btn-danger btn-sm">Apagar</a>
                         </td>
