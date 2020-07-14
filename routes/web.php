@@ -22,3 +22,5 @@ Route::get('/livros', 'ViewControl@book')->name('books');
 Route::get('/editoras', 'ViewControl@pub')->name('pub');
 
 Route::get('/dash', 'DashControl@index')->name('dash');
+
+Route::resource('dashPubs', 'PubControl');

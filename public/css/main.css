@@ -174,10 +174,25 @@ div.inData {
     opacity: 0.8;
 }
 
+/* Dashboard */
+
+#screen {
+    height: 100%;
+}
+
+#screen.open {
+    width: 100%;
+}
+
+#screen.close {
+    width: 75%;
+}
+
 /* Dash Nav */
 
 #dashNav {
     height: 100%;
+    overflow: hidden;
 }
 
 #dashNav.open {
@@ -234,7 +249,8 @@ div.inData {
 /* ==== General ==== */
 
 html, body {
-    min-height: auto;
+    min-height: 100%;
+    height: 100%;
 }
 
 body {

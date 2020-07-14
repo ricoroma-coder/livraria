@@ -13,7 +13,7 @@ class PubControl extends Controller
      */
     public function index()
     {
-        //
+        return view('pub_company.index');
     }
 
     /**

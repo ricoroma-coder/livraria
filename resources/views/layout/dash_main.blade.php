@@ -14,8 +14,13 @@
     <title>Dash - @yield('title')</title>
 </head>
 <body>
-    
-    @yield('content')
+
+    <div id="content" class="w-100 h-100">
+        @component('components.dash_nav')
+        @endcomponent
+
+        @yield('content')
+    </div>
 
     {{--  script javascript  --}}
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

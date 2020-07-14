@@ -43,6 +43,32 @@ $('#navigation .nav-link').click( function (e) {
   inData.addClass('inData');
 });
 
+// configNav
+$('#configNav').click( function () {
+  var configNav = $(this),
+  target = configNav.attr('target'),
+  parent = configNav.parents('#'+target),
+  divScreen = $('#screen');
+
+  if (configNav.hasClass('open')) {
+    configNav.removeClass('open');
+    parent.removeClass('open');
+    configNav.addClass('close');
+    parent.addClass('close');
+    divScreen.removeClass('close');
+    divScreen.addClass('open');
+  }
+  else {
+    configNav.removeClass('close');
+    parent.removeClass('close');
+    configNav.addClass('open');
+    parent.addClass('open');
+    divScreen.removeClass('open');
+    divScreen.addClass('close');
+  }
+
+});
+
 // Functions
 
 function time_now() {
