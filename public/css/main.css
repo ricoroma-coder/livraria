@@ -188,6 +188,16 @@ div.inData {
     width: 75%;
 }
 
+#dash-body.open {
+    width: 97%;
+    margin-left: auto;
+}
+
+#dash-body.close {
+    width: 100%;
+    margin-left: auto;
+}
+
 /* Dash Nav */
 
 #dashNav {
@@ -236,12 +246,62 @@ div.inData {
 }
 
 #configNav.close {
+    z-index: 100000;
     right: -20px;
     transform: rotate(-90deg);
     transition: transform 1s;
     -moz-transition: transform 1s;
     -webkit-transition: transform 1s;
 }
+
+/* Filter */
+
+#filter-form {
+    overflow: hidden;
+}
+
+#filter-form.open {
+    height: auto;
+    transition: height 1s;
+    -moz-transition: height 1s;
+    -webkit-transition: height 1s;
+}
+
+#filter-form.close {
+    height: 0;
+    transition: height 1s;
+    -moz-transition: height 1s;
+    -webkit-transition: height 1s;
+}
+
+#filter-form.close > * {
+    display: none;
+}
+
+#filter-arrow {
+    height: 30px;
+    width: 30px;
+    background-image: url('../storage/img/arrow.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#filter-arrow.close {
+    transform: rotate(0deg);
+    transition: transform 1s;
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+}
+
+#filter-arrow.open {
+    transform: rotate(180deg);
+    transition: transform 1s;
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+}
+
+
 
 /* ==== endComponents ==== */
 

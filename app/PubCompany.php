@@ -11,8 +11,11 @@ class PubCompany extends Model
 {
     use SoftDeletes;
 
-    public static function getAll() {
-        $collection = PubCompany::all();
+    public static function getAll($trashed = false) {
+        if (!$trashed)
+            $collection = PubCompany::all();
+        else
+            $collection = PubCompany::withTrashed();
 
         foreach ($collection as $value) {
             $path = 'img/pubs/'.$value->id.'/thumb.jpg';

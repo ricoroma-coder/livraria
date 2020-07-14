@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PubCompany;
 
 class PubControl extends Controller
 {
@@ -13,7 +14,8 @@ class PubControl extends Controller
      */
     public function index()
     {
-        return view('pub_company.index');
+        $content = PubCompany::getAll(true);
+        return view('pub_company.index', compact('content'));
     }
 
     /**

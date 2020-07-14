@@ -48,7 +48,8 @@ $('#configNav').click( function () {
   var configNav = $(this),
   target = configNav.attr('target'),
   parent = configNav.parents('#'+target),
-  divScreen = $('#screen');
+  divScreen = $('#screen'),
+  divDash = $('#dash-body');
 
   if (configNav.hasClass('open')) {
     configNav.removeClass('open');
@@ -57,6 +58,8 @@ $('#configNav').click( function () {
     parent.addClass('close');
     divScreen.removeClass('close');
     divScreen.addClass('open');
+    divDash.removeClass('close');
+    divDash.addClass('open');
   }
   else {
     configNav.removeClass('close');
@@ -65,8 +68,28 @@ $('#configNav').click( function () {
     parent.addClass('open');
     divScreen.removeClass('open');
     divScreen.addClass('close');
+    divDash.removeClass('open');
+    divDash.addClass('close');
   }
+});
 
+$('#filter-arrow').click( function (e) {
+  e.preventDefault();
+  var t = $(this),
+  form = $('#filter-form');
+
+  if (t.hasClass('open')) {
+    t.removeClass('open');
+    t.addClass('close');
+    form.removeClass('open');
+    form.addClass('close');
+  }
+  else {
+    t.removeClass('close');
+    t.addClass('open');
+    form.removeClass('close');
+    form.addClass('open');
+  }
 });
 
 // Functions
