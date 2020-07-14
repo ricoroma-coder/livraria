@@ -92,6 +92,34 @@ $('#filter-arrow').click( function (e) {
   }
 });
 
+// Form image holder
+
+$('#image-trigger').click( function (e) {
+  e.preventDefault();
+  $('#image-selector').trigger('click');
+});
+
+$('#image-selector').on('change', function () {
+  if (typeof (FileReader) != "undefined") {
+ 
+    var image_holder = $('#image');
+    image_holder.empty();
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      image_holder.removeAttr('style');
+      $("<img />", {
+          "src": e.target.result,
+          "class": "w-100 h-100 rounded-circle"
+      }).appendTo(image_holder);
+    }
+    image_holder.show();
+    reader.readAsDataURL($(this)[0].files[0]);
+  } else{
+      alert("Este navegador nao suporta FileReader.");
+  }
+});
+
 // Functions
 
 function time_now() {
