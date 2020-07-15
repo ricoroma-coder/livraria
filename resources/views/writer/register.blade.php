@@ -1,6 +1,6 @@
 @extends('layout.dash_main')
 
-@section('title', (isset($content)) ? 'Mudar editora' : 'Nova editora')
+@section('title', (isset($content)) ? 'Mudar escritor' : 'Novo escritor')
 @section('content')
 
 <div id="screen" class="close ml-auto">
@@ -12,9 +12,9 @@
 
     <div id="dash-body">
         @if (isset($content))
-            <p class="title mt-4">Dashboard de edição da editora {{ $content->name }}!</p>
+            <p class="title mt-4">Dashboard de edição do escritor {{ $content->name }}!</p>
         @else
-            <p class="title mt-4">Cadastre uma nova editora!</p>
+            <p class="title mt-4">Cadastre um novo escritor!</p>
         @endif
 
         @component('components.message')
@@ -22,9 +22,9 @@
 
         <div class="row m-0 w-100">
             @php
-                $action = route('dashPubs.store');
+                $action = route('dashWriters.store');
                 if (isset($content))
-                    $action = route('dashPubs.update', $content->id);
+                    $action = route('dashWriters.update', $content->id);
             @endphp
             <form action="{{ $action }}" class="h-100 w-100 ajax-form p-3 border-top border-bottom pt-4" enctype="multipart/form-data" method="POST">
                 @csrf
@@ -48,11 +48,13 @@
                         <label for="name">Nome</label>
                         <input class="form-control mb-1" type="text" name="name" id="name" placeholder="Nome" value="{{ (isset($content)) ? $content->name : '' }}">
 
-                        <label for="slogan">Slogan</label>
-                        <input class="form-control mb-1" type="text" name="slogan" id="slogan" placeholder="Slogan" value="{{ (isset($content)) ? $content->slogan : '' }}">
+                        <label for="birth">Data de nascimento</label>
+                        <input class="form-control mb-1" type="date" name="birth" id="birth" value="{{ (isset($content)) ? $content->birth : '' }}">
 
-                        <label for="matriz">Matriz</label>
-                        <input class="form-control mb-1" type="text" name="matriz" id="matriz" placeholder="Endereço" value="{{ (isset($content)) ? $content->address : '' }}">
+                        <label for="death">Data de óbito</label>
+                        <input class="form-control mb-1" type="date" name="death" id="death" value="{{ (isset($content)) ? $content->death : '' }}">
+                        <input class="form-check-input ml-auto disable-checkbox" type="checkbox" target="#death">
+                        <label class="form-check-label pl-4">Autor ainda vivo</label>
                     </div>
                 </div>
 

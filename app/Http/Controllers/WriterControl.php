@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Writer;
 
 class WriterControl extends Controller
 {
@@ -13,7 +14,8 @@ class WriterControl extends Controller
      */
     public function index()
     {
-        //
+        $content = Writer::getAll(true);
+        return view('writer.index', compact('content'));
     }
 
     /**
@@ -23,7 +25,7 @@ class WriterControl extends Controller
      */
     public function create()
     {
-        //
+        return view('writer.register');
     }
 
     /**
@@ -56,7 +58,8 @@ class WriterControl extends Controller
      */
     public function edit($id)
     {
-        //
+        $content = Writer::newById($id);
+        return view('writer.register', compact('content'));
     }
 
     /**

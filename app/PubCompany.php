@@ -11,6 +11,16 @@ class PubCompany extends Model
 {
     use SoftDeletes;
 
+    public static function newById($id) {
+        $collection = PubCompany::find($id);
+
+        $path = 'img/pubs/'.$collection->id.'/thumb.jpg';
+        if (Storage::disk('public')->exists($path))
+            $collection->image = asset('/storage/'.$path);
+
+        return $collection;
+    }
+
     public static function getAll($trashed = false) {
         if (!$trashed)
             $collection = PubCompany::all();
@@ -55,5 +65,33 @@ class PubCompany extends Model
         $hall = maxIndex($hall, 3);
 
         return $hall;
+    }
+
+    public function getSlogan() {
+        if (!empty($this->description)) {
+            if (strstr($this->description, "SLOGAN:")) {
+                $start = strpos($this->description, ":")+1;
+                $end = strpos($this->description, "/")-1;
+                $end -= $start;
+                $this->slogan = substr($this->description, $start, $end);
+                $this->description = str_replace("SLOGAN:".$this->slogan."S/", "", $this->description);
+            }
+            else
+                $this->slogan = "";
+        }
+    }
+
+    public function getAddress() {
+        if (!empty($this->description)) {
+            if (strstr($this->description, "ADDRESS:")) {
+                $start = strpos($this->description, ":")+1;
+                $end = strpos($this->description, "/")-1;
+                $end -= $start;
+                $this->address = substr($this->description, $start, $end);
+                $this->description = str_replace("ADDRESS:".$this->address."A/", "", $this->description);
+            }
+            else
+                $this->address = "";
+        }
     }
 }

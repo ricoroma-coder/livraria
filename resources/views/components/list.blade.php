@@ -6,7 +6,7 @@
     @if ($modify)
         
         <div class="row m-0 mt-2 mb-2 w-100 h-auto">
-            <a href="{{ $route }}" class="btn btn-primary ml-auto">Novo</a>
+            <a href="{{ route($route.'.create') }}" class="btn btn-primary ml-auto">Novo</a>
         </div>
 
     @endif
@@ -28,13 +28,13 @@
                     @if ($modify)
                         
                         <td class="w-25 pt-4">
-                            <a href="#" class="btn btn-primary btn-sm">Mudar</a>
-                            <a href="#" class="btn btn-danger btn-sm">Apagar</a>
+                            <a href="{{ route($route.'.edit', $value->id) }}" class="btn btn-primary btn-sm">Mudar</a>
+                            <a href="{{ route($route.'.destroy', $value->id) }}" class="btn btn-danger btn-sm">Apagar</a>
                         </td>
                     @else
 
                         <td class="w-25 pt-5">
-                            <a href="#" class="btn btn-primary btn-sm">Informações</a>
+                            <a href="{{ route($route.'.show', $value->id) }}" class="btn btn-primary btn-sm">Informações</a>
                         </td>
 
                     @endif

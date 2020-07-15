@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
+use App\PubCompany;
+use App\Writer;
 
 class BookControl extends Controller
 {
@@ -13,7 +16,12 @@ class BookControl extends Controller
      */
     public function index()
     {
-        //
+        $content = [
+            'books' => Book::getAll(true),
+            'writers' => Writer::all(),
+            'pubs' => PubCompany::all()
+        ];
+        return view('book.index', compact('content'));
     }
 
     /**
@@ -23,7 +31,11 @@ class BookControl extends Controller
      */
     public function create()
     {
-        //
+        $content = [
+            'writers' => Writer::all(),
+            'pubs' => PubCompany::all()
+        ];
+        return view('book.register', compact('content'));
     }
 
     /**
@@ -56,7 +68,13 @@ class BookControl extends Controller
      */
     public function edit($id)
     {
-        //
+        $content = [
+            'book' => Book::newById($id),
+            'writers' => Writer::all(),
+            'pubs' => PubCompany::all()
+        ];
+
+        return view('book.register', compact('content'));
     }
 
     /**

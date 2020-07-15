@@ -36,7 +36,26 @@ class PubControl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $content = $request->input();
+        unset($content['_token']);
+        $slogan = $content['slogan'];
+        $address = $content['address'];
+        unset($content['slogan']);
+        unset($content['address']);
+        $aux = '';
+        if (!empty($slogan))
+            $aux = $aux.'SLOGAN:'.$slogan.'S/';
+        if (!empty($address))
+            $aux = $aux.'ADDRESS:'.$address.'A/';
+        $content['description'] = $aux.$content['description'];
+        var_dump($content);
+        exit;
+        $p = new Produto();
+        foreach($prod as $k => $v){
+            $p->$k = $v;
+        }
+        $p->save();
+        return redirect(route('produtos'));
     }
 
     /**
@@ -58,7 +77,13 @@ class PubControl extends Controller
      */
     public function edit($id)
     {
-        //
+        $content = PubCompany::newById($id);
+
+        $content->description = "SLOGAN: Temos de Tudo!S/ADDRESS: Rua das AmoreirasA/Somos uma empresa de publicação de livros!";
+        
+        $content->getSlogan();
+        $content->getAddress();
+        return view('pub_company.register', compact('content'));
     }
 
     /**

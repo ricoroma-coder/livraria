@@ -11,16 +11,12 @@
 
     <div id="filter-form" class="row m-0 w-100 close">
         <form action="#" class="ajax-form w-100">
-            @foreach ($content as $value)
+            @foreach ($content as $key => $value)
     
                 <div class="col-sm-{{12/sizeof($content)}} p-2">
-                    @if (is_array($value))
-                        @component('components.filter-'.$value['name'], ['content' => $value['content']])
-                        @endcomponent
-                    @else
-                        @component('components.filter-'.$value)
-                        @endcomponent
-                    @endif
+                   
+                    @component('components.filter-'.$key, ['content' => $value])
+                    @endcomponent
                     
                 </div>
                 

@@ -10,12 +10,12 @@
                 <a class="nav-link" href="{{ route('dash') }}">Dashboard</a>
             </li>
     
-            <li class="nav-item {{ request()->routeIs('#') ? 'active' : '' }}">
-                <a class="nav-link" href="#">Livros</a>
+            <li class="nav-item {{ request()->routeIs('dashBooks.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashBooks.index') }}">Livros</a>
             </li>
     
-            <li class="nav-item {{ request()->routeIs('#') ? 'active' : '' }}">
-                <a class="nav-link" href="#">Autores</a>
+            <li class="nav-item {{ request()->routeIs('dashWriters.*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashWriters.index') }}">Autores</a>
             </li>
     
             <li class="nav-item {{ request()->routeIs('dashPubs.*') ? 'active' : '' }}">

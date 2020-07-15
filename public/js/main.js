@@ -120,6 +120,69 @@ $('#image-selector').on('change', function () {
   }
 });
 
+// Disable checkbox
+
+$('.disable-checkbox').change( function () {
+  var t = $(this),
+  target = t.attr('target'),
+  input = $(target);
+
+  if (t.hasClass('checked')) {
+    t.removeClass('checked');
+    input.removeAttr('disabled');
+  }
+  else {
+    t.addClass('checked');
+    input.attr('disabled', 'disabled');
+  }
+});
+
+// Delete Button
+
+// $('.ajax-button').click( function (e) {
+//   var t = $(this),
+//   parent = t.parents('tr'),
+//   id = parent.attr('value');
+// });
+
+// Ajax-form
+
+$('form.ajax-form').submit( function(e) {
+
+	e.preventDefault();
+	var t = $(this),
+  msg = $('.message'),
+  d = new FormData(t[0]);
+
+	msg.removeClass('success').text('');
+  msg.removeClass('error');
+
+  $.ajax({
+    url: t.attr('action')+"@store",
+    type: t.attr('method'),
+    data: d,
+    contentType: false,
+    processData: false,
+    success: function(x){
+      msg.text(x);
+      // if (x == 1) {
+      // 	a.text(a.attr('success')).addClass('success');
+      // 	s.removeClass('loading');
+      // 	t.trigger('success');
+      // }
+      // else {
+        // a.text(x).addClass('error');
+        // s.removeClass('loading');
+      // }
+    },
+    error: function(){
+      msg.text('Houve um erro de conexão').addClass('text-danger');
+    }
+  });
+  
+
+});
+
 // Functions
 
 function time_now() {

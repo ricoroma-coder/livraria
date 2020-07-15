@@ -13,8 +13,21 @@ class Book extends Model
 {
     use SoftDeletes;
 
-    public static function getAll() {
-        $collection = Book::all();
+    public static function newById($id) {
+        $collection = Book::find($id);
+
+        $path = 'img/books/'.$collection->id.'/thumb.jpg';
+        if (Storage::disk('public')->exists($path))
+            $collection->image = asset('/storage/'.$path);
+
+        return $collection;
+    }
+
+    public static function getAll($trashed = false) {
+        if (!$trashed)
+            $collection = Book::all();
+        else
+            $collection = Book::withTrashed()->get();
 
         foreach ($collection as $value) {
             $path = 'img/books/'.$value->id.'/thumb.jpg';

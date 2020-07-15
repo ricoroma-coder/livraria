@@ -24,3 +24,7 @@ Route::get('/editoras', 'ViewControl@pub')->name('pub');
 Route::get('/dash', 'DashControl@index')->name('dash');
 
 Route::resource('dashPubs', 'PubControl');
+
+Route::resource('dashWriters', 'WriterControl');
+
+Route::resource('dashBooks', 'BookControl');

@@ -1,6 +1,6 @@
 @extends('layout.dash_main')
 
-@section('title', 'Editoras')
+@section('title', 'Livros')
 @section('content')
 
 <div id="screen" class="close ml-auto">
@@ -12,12 +12,12 @@
 
     <div id="dash-body">
         <div class="row m-0 w-100">
-            @component('components.filters', ['content' => ['pub' => null]])
+            @component('components.filters', ['content' => ['book' => $content]])
             @endcomponent
         </div>
 
         <div class="row m-0 w-100">
-            @component('components.list', ['content' => $content, 'modify' => true, 'route' => 'dashPubs'])
+            @component('components.list', ['content' => $content['books'], 'modify' => true, 'route' => 'dashBooks'])
             @endcomponent
         </div>
     </div>

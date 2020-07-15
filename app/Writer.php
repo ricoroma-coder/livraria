@@ -11,8 +11,21 @@ class Writer extends Model
 {
     use SoftDeletes;
 
-    public static function getAll() {
-        $collection = Writer::all();
+    public static function newById($id) {
+        $collection = Writer::find($id);
+
+        $path = 'img/writers/'.$collection->id.'/thumb.jpg';
+        if (Storage::disk('public')->exists($path))
+            $collection->image = asset('/storage/'.$path);
+
+        return $collection;
+    }
+
+    public static function getAll($trashed = false) {
+        if (!$trashed)
+            $collection = Writer::all();
+        else
+            $collection = Writer::withTrashed()->get();
 
         foreach ($collection as $value) {
             $path = 'img/writers/'.$value->id.'/thumb.jpg';
