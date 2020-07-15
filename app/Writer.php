@@ -66,4 +66,23 @@ class Writer extends Model
 
         return $hall;
     }
+
+    public function removeImage() {
+        $path = explode('storage', $this->image)[1];
+
+        if (Storage::disk('public')->exists($path)) {
+            if (Storage::disk('public')->delete($path)){
+                $aux = explode('/', $path);
+                array_pop($aux);
+                $aux = implode('/', $aux);
+                Storage::disk('public')->deleteDirectory($aux);
+            }
+            else {
+                return "Não foi possível excluír a imagem";
+                exit;
+            }
+        }
+
+        return true;
+    }
 }

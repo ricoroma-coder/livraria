@@ -16,20 +16,23 @@
         @else
             <p class="title mt-4">Cadastre um novo escritor!</p>
         @endif
-
-        @component('components.message')
+        @php
+            $action = route('dashWriters.store');
+            $message = 'Cadastrado com sucesso';
+            if (isset($content)) {
+                $action = route('dashWriters.update', $content->id);
+                $message = 'Alterado com sucesso';
+            }
+        @endphp
+        @component('components.message', ['message' => $message])
         @endcomponent
 
         <div class="row m-0 w-100">
-            @php
-                $action = route('dashWriters.store');
-                if (isset($content))
-                    $action = route('dashWriters.update', $content->id);
-            @endphp
+            
             <form action="{{ $action }}" class="h-100 w-100 ajax-form p-3 border-top border-bottom pt-4" enctype="multipart/form-data" method="POST">
                 @csrf
                 @if (isset($content))
-                    <input type="hidden" name="id" value="{{$content->id}}">
+                    <input type="hidden" name="id" id="id">
                     @method('put')
                 @endif
 
@@ -46,13 +49,13 @@
 
                     <div class="col-sm-8 h-100">
                         <label for="name">Nome</label>
-                        <input class="form-control mb-1" type="text" name="name" id="name" placeholder="Nome" value="{{ (isset($content)) ? $content->name : '' }}">
+                        <input class="form-control mb-1" type="text" name="name" id="name" placeholder="Nome">
 
                         <label for="birth">Data de nascimento</label>
-                        <input class="form-control mb-1" type="date" name="birth" id="birth" value="{{ (isset($content)) ? $content->birth : '' }}">
+                        <input class="form-control mb-1" type="date" name="birth" id="birth">
 
                         <label for="death">Data de óbito</label>
-                        <input class="form-control mb-1" type="date" name="death" id="death" value="{{ (isset($content)) ? $content->death : '' }}">
+                        <input class="form-control mb-1" type="date" name="death" id="death">
                         <input class="form-check-input ml-auto disable-checkbox" type="checkbox" target="#death">
                         <label class="form-check-label pl-4">Autor ainda vivo</label>
                     </div>
@@ -61,7 +64,7 @@
                 
                 <div class="row form-group m-0 mt-3 p-3">
                     <label for="description">Descrição</label>
-                    <textarea rows="4" class="form-control mb-1" name="description" id="description" placeholder="Descrição">{{ (isset($content)) ? $content->description : '' }}</textarea>
+                    <textarea rows="4" class="form-control mb-1" name="description" id="description" placeholder="Descrição"></textarea>
                 </div>
 
                 <div class="row w-100 m-0 p-4">
@@ -74,4 +77,16 @@
 
 </div>
 
+@endsection
+@section('script')
+<script>
+    var obj = JSON.parse('<?php if(isset($content)) echo json_encode($content); else echo "{}";?>');
+
+    $(document).ready(function(){
+        if(!$.isEmptyObject(obj)){
+            $('#id').val(obj['id']);
+            updateFields();
+        }
+    });
+</script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Writer;
+use Illuminate\Support\Facades\Storage;
 
 class WriterControl extends Controller
 {
@@ -36,7 +37,22 @@ class WriterControl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = $request->input();
+        unset($post['_token']);
+        $obj = new Writer();
+        $obj->clicks = 0;
+        $obj->rate = 0;
+        foreach ($post as $key => $value) {
+            $obj->$key = $value;
+        }
+        $obj->save();
+        if (!empty($request->file('image'))) {
+            $request->file('image')->storeAs(
+                '/public/img/writers/'.$obj->id.'/', 'thumb.jpg'
+            );
+        }
+        
+        return true;
     }
 
     /**
@@ -71,7 +87,20 @@ class WriterControl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $put = $request->input();
+        unset($put['_token']);
+        unset($put['_method']);
+        $obj = Writer::find($id);
+        foreach ($put as $key => $value) {
+            $obj->$key = $value;
+        }
+        if (!empty($request->file('image'))) {
+            $request->file('image')->storeAs(
+                '/public/img/writers/'.$obj->id.'/', 'thumb.jpg'
+            );
+        }
+        $obj->save();
+        return true;
     }
 
     /**
@@ -82,6 +111,17 @@ class WriterControl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $obj = Writer::newById($id);
+        if (!empty($obj->image)){
+
+            if (!$obj->removeImage()) {
+                return 'Não foi possível deletar a imagem';
+            }
+
+        }
+        if ($obj->forceDelete())
+            return true;
+        else
+         return false;
     }
 }

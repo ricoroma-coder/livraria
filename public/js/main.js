@@ -139,11 +139,40 @@ $('.disable-checkbox').change( function () {
 
 // Delete Button
 
-// $('.ajax-button').click( function (e) {
-//   var t = $(this),
-//   parent = t.parents('tr'),
-//   id = parent.attr('value');
-// });
+$('.ajax-delete').click( function (e) {
+  e.preventDefault();
+  var t = $(this),
+  msg = $('.message'),
+  action = t.attr('href'),
+  id = t.attr('data'),
+  token = $("meta[name='csrf-token']").attr("content"),
+  tr = t.parents('tr');
+
+  $.ajax({
+    url: action,
+    type: 'DELETE',
+    data: {
+      "id": id,
+      "_token": token,
+    },
+    success: function (x) {
+      if (x) {
+        
+        msg.text('Excluído com sucesso').addClass('text-success')
+        tr.remove();
+        setTimeout( function () { 
+          msg.text('').removeClass('text-success');
+        }, 3000);
+      }
+      else {
+        msg.text(x).addClass('text-danger');
+      }
+    },
+    error: function(){
+      msg.text('Houve um erro de conexão').addClass('text-danger');
+    }
+  });
+});
 
 // Ajax-form
 
@@ -152,28 +181,32 @@ $('form.ajax-form').submit( function(e) {
 	e.preventDefault();
 	var t = $(this),
   msg = $('.message'),
-  d = new FormData(t[0]);
+  d = new FormData(t[0]),
+  action = t.attr('action');
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
 	msg.removeClass('success').text('');
   msg.removeClass('error');
 
   $.ajax({
-    url: t.attr('action')+"@store",
-    type: t.attr('method'),
+    url: action,
+    type: 'post',
     data: d,
     contentType: false,
     processData: false,
     success: function(x){
-      msg.text(x);
-      // if (x == 1) {
-      // 	a.text(a.attr('success')).addClass('success');
-      // 	s.removeClass('loading');
-      // 	t.trigger('success');
-      // }
-      // else {
-        // a.text(x).addClass('error');
-        // s.removeClass('loading');
-      // }
+      if (x == 1) {
+      	msg.text(msg.attr('success')).addClass('text-success');
+      	t.trigger('success');
+      }
+      else {
+        msg.text(x).addClass('text-danger');
+      }
     },
     error: function(){
       msg.text('Houve um erro de conexão').addClass('text-danger');
@@ -182,6 +215,31 @@ $('form.ajax-form').submit( function(e) {
   
 
 });
+
+// update register fields
+
+function updateFields(){
+
+	if(!$.isEmptyObject(obj)){
+
+		$.each($('input[type="text"], input[type="email"], input[type="number"], input[type="date"], input[type="time"], input[type="password"], select, textarea'), function(){
+			var t = $(this)
+				value = obj[t.attr('name')];
+			if($.type(value) == 'object'){
+				t.val(value['id']);
+			}else{
+				t.val(value);
+			}
+		});
+
+		$('input[type="radio"]').each(function(){
+			var name = $(this).attr('name');
+			$('input[name="'+name+'"][value="'+obj[name]+'"]').prop('checked','true');
+		});
+
+	}
+
+}
 
 // Functions
 

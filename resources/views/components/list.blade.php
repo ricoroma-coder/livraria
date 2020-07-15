@@ -3,6 +3,9 @@
 
     {{ $slot }}
 
+    @component('components.message')
+    @endcomponent
+
     @if ($modify)
         
         <div class="row m-0 mt-2 mb-2 w-100 h-auto">
@@ -26,11 +29,11 @@
                     <td class="w-25 pt-5">Clas: {{ ($value->rate/4)*100 }}%</td>
 
                     @if ($modify)
-                        
                         <td class="w-25 pt-4">
                             <a href="{{ route($route.'.edit', $value->id) }}" class="btn btn-primary btn-sm">Mudar</a>
-                            <a href="{{ route($route.'.destroy', $value->id) }}" class="btn btn-danger btn-sm">Apagar</a>
+                            <a data="{{$value->id}}" href="{{ route($route.'.destroy', $value->id) }}" class="btn btn-danger btn-sm ajax-delete">Apagar</a>
                         </td>
+
                     @else
 
                         <td class="w-25 pt-5">

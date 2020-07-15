@@ -16,20 +16,22 @@
         @else
             <p class="title mt-4">Cadastre uma nova editora!</p>
         @endif
-
-        @component('components.message')
+        @php
+            $action = route('dashPubs.store');
+            $message = 'Cadastrado com sucesso';
+            if (isset($content)) {
+                $action = route('dashPubs.update', $content->id);
+                $message = 'Alterado com sucesso';
+            }
+        @endphp
+        @component('components.message', ['message' => $message])
         @endcomponent
 
         <div class="row m-0 w-100">
-            @php
-                $action = route('dashPubs.store');
-                if (isset($content))
-                    $action = route('dashPubs.update', $content->id);
-            @endphp
-            <form action="{{ $action }}" class="h-100 w-100 ajax-form p-3 border-top border-bottom pt-4" enctype="multipart/form-data" method="POST">
+            <form action="{{ $action }}" class="h-100 w-100 p-3 ajax-form border-top border-bottom pt-4" enctype="multipart/form-data" method="POST">
                 @csrf
                 @if (isset($content))
-                    <input type="hidden" name="id" value="{{$content->id}}">
+                    <input type="hidden" name="id" value="{{$content->id}}" id="id">
                     @method('put')
                 @endif
 
@@ -46,20 +48,20 @@
 
                     <div class="col-sm-8 h-100">
                         <label for="name">Nome</label>
-                        <input class="form-control mb-1" type="text" name="name" id="name" placeholder="Nome" value="{{ (isset($content)) ? $content->name : '' }}">
+                        <input class="form-control mb-1" type="text" name="name" id="name" placeholder="Nome">
 
                         <label for="slogan">Slogan</label>
-                        <input class="form-control mb-1" type="text" name="slogan" id="slogan" placeholder="Slogan" value="{{ (isset($content)) ? $content->slogan : '' }}">
+                        <input class="form-control mb-1" type="text" name="slogan" id="slogan" placeholder="Slogan">
 
-                        <label for="matriz">Matriz</label>
-                        <input class="form-control mb-1" type="text" name="matriz" id="matriz" placeholder="Endereço" value="{{ (isset($content)) ? $content->address : '' }}">
+                        <label for="address">Matriz</label>
+                        <input class="form-control mb-1" type="text" name="address" id="address" placeholder="Endereço">
                     </div>
                 </div>
 
                 
                 <div class="row form-group m-0 mt-3 p-3">
                     <label for="description">Descrição</label>
-                    <textarea rows="4" class="form-control mb-1" name="description" id="description" placeholder="Descrição">{{ (isset($content)) ? $content->description : '' }}</textarea>
+                    <textarea rows="4" class="form-control mb-1" name="description" id="description" placeholder="Descrição"></textarea>
                 </div>
 
                 <div class="row w-100 m-0 p-4">
@@ -72,4 +74,16 @@
 
 </div>
 
+@endsection
+@section('script')
+<script>
+    var obj = JSON.parse('<?php if(isset($content)) echo json_encode($content); else echo "{}";?>');
+
+    $(document).ready(function(){
+        if(!$.isEmptyObject(obj)){
+            $('#id').val(obj['id']);
+            updateFields();
+        }
+    });
+</script>
 @endsection

@@ -23,10 +23,6 @@
             </li>
 
             <li class="nav-item {{ request()->routeIs('#') ? 'active' : '' }}">
-                <a class="nav-link" href="#">Categorias</a>
-            </li>
-
-            <li class="nav-item {{ request()->routeIs('#') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('index') }}">Voltar</a>
             </li>
 

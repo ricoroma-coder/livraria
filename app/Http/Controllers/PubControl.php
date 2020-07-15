@@ -42,20 +42,27 @@ class PubControl extends Controller
         $address = $content['address'];
         unset($content['slogan']);
         unset($content['address']);
+        // var_dump($content);
         $aux = '';
         if (!empty($slogan))
             $aux = $aux.'SLOGAN:'.$slogan.'S/';
         if (!empty($address))
             $aux = $aux.'ADDRESS:'.$address.'A/';
         $content['description'] = $aux.$content['description'];
-        var_dump($content);
-        exit;
-        $p = new Produto();
-        foreach($prod as $k => $v){
-            $p->$k = $v;
+        // echo $content['description'];
+        $obj = new PubCompany();
+        $obj->clicks = 0;
+        $obj->rate = 0;
+        foreach($content as $k => $v){
+            $obj->$k = $v;
         }
-        $p->save();
-        return redirect(route('produtos'));
+        $obj->save();
+        if (!empty($request->file('image'))) {
+            $request->file('image')->storeAs(
+                '/public/img/pubs/'.$obj->id.'/', 'thumb.jpg'
+            );
+        }
+        return true;
     }
 
     /**
@@ -78,8 +85,6 @@ class PubControl extends Controller
     public function edit($id)
     {
         $content = PubCompany::newById($id);
-
-        $content->description = "SLOGAN: Temos de Tudo!S/ADDRESS: Rua das AmoreirasA/Somos uma empresa de publicação de livros!";
         
         $content->getSlogan();
         $content->getAddress();
@@ -95,7 +100,30 @@ class PubControl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $put = $request->input();
+        unset($put['_token']);
+        unset($put['_method']);
+        $slogan = $put['slogan'];
+        $address = $put['address'];
+        unset($put['slogan']);
+        unset($put['address']);
+        $aux = '';
+        if (!empty($slogan))
+            $aux = $aux.'SLOGAN:'.$slogan.'S/';
+        if (!empty($address))
+            $aux = $aux.'ADDRESS:'.$address.'A/';
+        $put['description'] = $aux.$put['description'];
+        $obj = PubCompany::find($id);
+        foreach ($put as $key => $value) {
+            $obj->$key = $value;
+        }
+        if (!empty($request->file('image'))) {
+            $request->file('image')->storeAs(
+                '/public/img/pubs/'.$obj->id.'/', 'thumb.jpg'
+            );
+        }
+        $obj->save();
+        return true;
     }
 
     /**
@@ -106,6 +134,17 @@ class PubControl extends Controller
      */
     public function destroy($id)
     {
-        //
+        $obj = PubCompany::newById($id);
+        if (!empty($obj->image)){
+
+            if (!$obj->removeImage()) {
+                return 'Não foi possível deletar a imagem';
+            }
+
+        }
+        if ($obj->forceDelete())
+            return true;
+        else
+         return false;
     }
 }
