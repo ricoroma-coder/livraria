@@ -301,7 +301,26 @@ div.inData {
     -webkit-transition: transform 1s;
 }
 
+/* ==== Search ==== */
 
+#searchContent {
+    bottom:0;
+    z-index: 1000000;
+}
+
+#searchContent > div {
+    cursor: pointer;
+}
+
+#searchContent > div:hover {
+    background-color: #d5d5d5;
+}
+
+#searchContent .star {
+    background-image: url('../storage/img/star.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
 
 /* ==== endComponents ==== */
 

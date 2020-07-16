@@ -23,6 +23,12 @@ Route::get('/editoras', 'ViewControl@pub')->name('pub');
 
 Route::get('/dash', 'DashControl@index')->name('dash');
 
+Route::get('/dash/ajaxSearch', 'DashControl@ajaxSearch')->name('ajaxSearch');
+
+Route::post('/dash/search', 'DashControl@search')->name('search');
+
+Route::get('/dash/redirect', 'DashControl@redirect')->name('searchRedirect');
+
 Route::resource('dashPubs', 'PubControl');
 
 Route::resource('dashWriters', 'WriterControl');

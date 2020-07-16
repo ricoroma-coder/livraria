@@ -29,9 +29,12 @@
                     <td class="w-25 pt-5">Clas: {{ ($value->rate/4)*100 }}%</td>
 
                     @if ($modify)
-                        <td class="w-25 pt-4">
-                            <a href="{{ route($route.'.edit', $value->id) }}" class="btn btn-primary btn-sm">Mudar</a>
-                            <a data="{{$value->id}}" href="{{ route($route.'.destroy', $value->id) }}" class="btn btn-danger btn-sm ajax-delete">Apagar</a>
+                        <td class="w-25 pt-4 m-0">
+                            <div class="row m-0 p-0 w-100 h-auto">
+                                <a href="{{ route($route.'.edit', $value->id) }}" class="btn btn-primary btn-sm col-sm-12">Mudar</a>
+                            
+                                <a data="{{$value->id}}" href="{{ route($route.'.destroy', $value->id) }}" class="btn btn-danger btn-sm ajax-delete col-sm-12">Apagar</a>
+                            </div>
                         </td>
 
                     @else

@@ -241,6 +241,65 @@ function updateFields(){
 
 }
 
+// Ajax Search
+
+$('#searchTarget').keyup( function () {
+  var t = $(this),
+  content = $('#searchContent'),
+  value = t.val(),
+  form = t.parents('form'),
+  action = t.attr('href'),
+  data = t.attr('data-require');
+  data = data.split(" ");
+
+  if (!notNull(value)) {
+    content.css('bottom', '0px');
+    content.html('');
+  }
+  else {
+    $.ajax({
+      url: action,
+      type: 'GET',
+      data: {'require': data, 'content': value},
+      success: function(x) {
+        content.css('bottom', '0px');
+        content.html('');
+        var count = 0;
+        $.each(JSON.parse(x), function (index, value) {
+          $.each(value, function (i, v) {
+            
+            count++;
+            var rate = '';
+            var i = 0;
+            for (i = 0; i < v.rate; i++) {
+              rate = rate+'<div class="col-sm-3 star m-0 p-0"></div>';
+            }
+            var route = v.route;
+            content.append('<div class="search-item row m-0 w-100 p-2 text-center border" style="height:50px;" count="'+count+'" onclick="ajaxRedirect('+count+')" route="'+route+'">'+
+            '<div class="col-sm-8 m-0 h-100">'+
+            '<h5 class="p-1">'+v.name+'</h5>'+
+            '</div>'+
+            '<div class="col-sm-4 m-0 h-100 row">'+
+            rate+
+            '</div>'+
+            '</div>');
+            var bottom = content.css('bottom');
+            var px = bottom.split('p')[0];
+            content.css('bottom', px-50+'px');
+
+          });
+        
+        });
+      },
+      error: function(x){
+        alert('Houve um erro de conexão');
+      }
+    });
+  }
+
+ 
+});
+
 // Functions
 
 function time_now() {
@@ -268,4 +327,33 @@ function formatDate (date, time) {
   }
 
   return [date,time];
+}
+
+function notNull (x){
+  if(x!="" && !(x.match(/^\s+$/))) {
+      return true;
+  }
+  else {
+      return false;
+  }
+}
+
+function ajaxRedirect(count) {
+  var t = $('.search-item[count="'+count+'"]'),
+  target = t.attr('route'),
+  route = target.split(' ')[0];
+  id = target.split(' ')[1],
+  redirect = $('#searchContent').attr('redirect');
+
+  $.ajax({
+    url: redirect,
+    type: 'GET',
+    data: {'route': route, 'id': id},
+    success: function(x) {
+      window.location.href = x;
+    },
+    error: function(x) {
+      alert('Houve um erro de conexão');
+    }
+  });
 }
