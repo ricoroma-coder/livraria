@@ -35,7 +35,7 @@
             <p class="title">Destaques</p>
 
             {{--  import component carousel  --}}
-            @component('components.carousel')
+            @component('components.carousel', ['content' => ['books'=> $content['books']['lasts'], 'pubs' => $content['pubs']['lasts'], 'writers' => $content['writers']['lasts']]])
             @endcomponent
 
         </div>

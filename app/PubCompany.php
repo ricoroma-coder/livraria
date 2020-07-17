@@ -50,8 +50,10 @@ class PubCompany extends Model
         $clicks = $all->sortByDesc('clicks')->all();
         $clicks = maxIndex($clicks, 6);
 
+        $lasts = $all->sortByDesc('created_at')->take(3);
+
         if ($current == 'main')
-            return compact('clicks','hall','rank');
+            return compact('clicks','hall','rank','lasts');
         else
             return compact('all','hall','rank');
     }
