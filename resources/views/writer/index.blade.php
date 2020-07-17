@@ -3,7 +3,10 @@
 @section('title', 'Escritores')
 @section('content')
 
-<div id="screen" class="close ml-auto">
+<div id="screen" class="close ml-auto position-relative">
+
+    @component('components.modals')
+    @endcomponent
 
     <div class="row m-0 w-100">
         @component('components.search', ['data' => 'writers'])

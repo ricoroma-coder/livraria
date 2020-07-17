@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Writer;
 use App\Book;
+use DB;
 use Illuminate\Support\Facades\Storage;
 
 class WriterControl extends Controller
@@ -129,6 +130,20 @@ class WriterControl extends Controller
             }
 
         }
+
+        $query = DB::table('books')->where('id_writer', $obj->id)->get();
+        foreach ($query as $value) {
+            $book = Book::newById($value->id);
+            if (!empty($book->image)){
+
+                if (!$book->removeImage()) {
+                    return 'Não foi possível deletar a imagem';
+                }
+    
+            }
+            $book->forceDelete();
+        }
+
         if ($obj->forceDelete())
             return true;
         else

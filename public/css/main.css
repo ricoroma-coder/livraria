@@ -177,11 +177,11 @@ div.inData {
 /* Dashboard */
 
 #screen {
-    height: 100%;
+    height: auto;
 }
 
 #screen.open {
-    width: 100%;
+    width: 97%;
 }
 
 #screen.close {
@@ -189,7 +189,7 @@ div.inData {
 }
 
 #dash-body.open {
-    width: 97%;
+    width: 100%;
     margin-left: auto;
 }
 
@@ -246,7 +246,7 @@ div.inData {
 }
 
 #configNav.close {
-    z-index: 100000;
+    z-index: 100000000000000;
     right: -20px;
     transform: rotate(-90deg);
     transition: transform 1s;
@@ -320,6 +320,16 @@ div.inData {
     background-image: url('../storage/img/star.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+
+/* ==== Modal ==== */
+
+#modal.closed {
+    display: none;
+}
+
+#modal.opened {
+    display: block;
 }
 
 /* ==== endComponents ==== */

@@ -5,6 +5,9 @@
 
 <div id="screen" class="close ml-auto">
 
+    @component('components.modals')
+    @endcomponent
+
     <div class="row m-0 w-100">
         @component('components.search', ['data' => 'books writers pub_companies'])
         @endcomponent

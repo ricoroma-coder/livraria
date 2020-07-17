@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PubCompany;
 use App\Book;
+use DB;
 
 class PubControl extends Controller
 {
@@ -154,6 +155,20 @@ class PubControl extends Controller
             }
 
         }
+
+        $query = DB::table('books')->where('id_pub', $obj->id)->get();
+        foreach ($query as $value) {
+            $book = Book::newById($value->id);
+            if (!empty($book->image)){
+
+                if (!$book->removeImage()) {
+                    return 'Não foi possível deletar a imagem';
+                }
+    
+            }
+            $book->forceDelete();
+        }
+
         if ($obj->forceDelete())
             return true;
         else

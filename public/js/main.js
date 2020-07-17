@@ -142,11 +142,52 @@ $('.disable-checkbox').change( function () {
 $('.ajax-delete').click( function (e) {
   e.preventDefault();
   var t = $(this),
+  modal = $('#modal'),
+  href = t.attr('href'),
+  id = t.attr('data'),
+  confirmButton = $('#modal .confirm-delete');
+
+  confirmButton.attr('href', href);
+  confirmButton.attr('data', id);
+
+  modal.removeClass('closed');
+  modal.addClass('opened');
+
+  if ($('#configNav').hasClass('open'))
+  $('#configNav').trigger('click');
+});
+
+$('.cancel-delete').click( function (e) {
+  e.preventDefault();
+  var t = $(this),
+  modal = t.parents('#modal');
+
+  modal.removeClass('opened');
+  modal.addClass('closed');
+  if ($('#configNav').hasClass('close'))
+    $('#configNav').trigger('click');
+}); 
+
+$('#bg-modal').click( function (e) {
+  e.preventDefault();
+  var t = $(this),
+  modal = t.parents('#modal');
+
+  modal.removeClass('opened');
+  modal.addClass('closed');
+  if ($('#configNav').hasClass('close'))
+    $('#configNav').trigger('click');
+}); 
+
+$('.confirm-delete').click( function (e) {
+  e.preventDefault();
+  var t = $(this),
   msg = $('.message'),
   action = t.attr('href'),
   id = t.attr('data'),
   token = $("meta[name='csrf-token']").attr("content"),
-  tr = t.parents('tr');
+  tr = $('tr[value="'+id+'"]'),
+  modal = t.parents('#modal');
 
   $.ajax({
     url: action,
@@ -156,8 +197,9 @@ $('.ajax-delete').click( function (e) {
       "_token": token,
     },
     success: function (x) {
-      if (x) {
-        
+      if (x == 1) {
+        modal.removeClass('opened');
+        modal.addClass('closed');
         msg.text('Excluído com sucesso').addClass('text-success')
         tr.remove();
         setTimeout( function () { 
@@ -165,10 +207,14 @@ $('.ajax-delete').click( function (e) {
         }, 3000);
       }
       else {
+        modal.removeClass('opened');
+        modal.addClass('closed');
         msg.text(x).addClass('text-danger');
       }
     },
     error: function(){
+      modal.removeClass('opened');
+      modal.addClass('closed');
       msg.text('Houve um erro de conexão').addClass('text-danger');
     }
   });
