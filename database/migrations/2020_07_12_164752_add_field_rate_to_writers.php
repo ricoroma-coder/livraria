@@ -14,7 +14,7 @@ class AddFieldRateToWriters extends Migration
     public function up()
     {
         Schema::table('writers', function (Blueprint $table) {
-            $table->integer('rate');
+            $table->double('rate', 3,1);
         });
     }
 

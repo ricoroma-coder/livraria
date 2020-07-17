@@ -20,7 +20,7 @@ class CreateTableBooks extends Migration
             $table->integer('year');
             $table->bigInteger('id_writer');
             $table->bigInteger('id_pub');
-            $table->integer('rate');
+            $table->double('rate', 3,1);
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();

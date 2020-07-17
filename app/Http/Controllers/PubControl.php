@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PubCompany;
+use App\Book;
 
 class PubControl extends Controller
 {
@@ -73,7 +74,18 @@ class PubControl extends Controller
      */
     public function show($id)
     {
-        //
+        $obj = PubCompany::find($id);
+        $obj->clicks+=1;
+        $obj->save();
+        $obj = PubCompany::newById($id);
+        $content = [
+            'obj' => $obj,
+            'books' => Book::getAll()->where('id_pub', $id)
+        ];
+
+        $content['obj']->getSlogan();
+        $content['obj']->getAddress();
+        return view('pub_company.show', compact('content'));
     }
 
     /**
@@ -146,5 +158,44 @@ class PubControl extends Controller
             return true;
         else
          return false;
+    }
+
+    public function rating(Request $request, $id) {
+
+        $obj = PubCompany::find($id);
+        foreach ($request->input() as $value) {
+            $rate = $value;
+        }
+        $rate = ($rate + $obj->rate) / 2;
+        $obj->rate = number_format($rate, 1, '.', ' ');
+        $obj->save();
+
+        $rate = ($obj->rate/4)*100; 
+        $status = ['rate' => $rate];
+        if ($status['rate'] == 0) {
+            $status['rate'] = 100;
+            $status['title'] = 'Sem classificação';
+            $status['bg'] = 'bg-light text-dark';
+        }
+        else if ($status['rate'] <= 25) {
+            $status['title'] = 'Ruim';
+            $status['bg'] = 'bg-danger';
+        }
+        else if ($status['rate'] <= 50) {
+            $status['title'] = 'Razoável';
+            $status['bg'] = 'bg-warning';
+        }
+        else if ($status['rate'] <= 75) {
+            $status['title'] = 'Bom';
+            $status['bg'] = 'bg-success';
+        }
+        else {
+            $status['title'] = 'Muito bom';
+            $status['bg'] = 'bg-primary';
+        }
+
+        return json_encode($status);
+
+
     }
 }

@@ -39,7 +39,7 @@
                 <div class="row form-group m-0">
                     <div class="col-sm-4 mh-100" style="min-height: 250px;max-height: 250px;">
                         @if (isset($content['book']))
-                            @component('components.image', ['content' => $content['book']->image])
+                            @component('components.image', ['content' => $content['book']->image, 'config' => true])
                             @endcomponent
                         @else
                             @component('components.image')

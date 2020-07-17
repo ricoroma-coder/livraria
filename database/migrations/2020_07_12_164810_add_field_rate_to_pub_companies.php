@@ -14,7 +14,7 @@ class AddFieldRateToPubCompanies extends Migration
     public function up()
     {
         Schema::table('pub_companies', function (Blueprint $table) {
-            $table->integer('rate');
+            $table->double('rate', 3,1);
         });
     }
 

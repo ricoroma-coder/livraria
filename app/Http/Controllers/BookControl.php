@@ -72,7 +72,17 @@ class BookControl extends Controller
      */
     public function show($id)
     {
-        //
+        $obj = Book::find($id);
+        $obj->clicks++;
+        $obj->save();
+        $obj = Book::newById($id);
+        $content = [
+            'obj' => $obj,
+            'pub' => PubCompany::newById($obj->id_pub),
+            'writer' => Writer::newById($obj->id_writer)
+        ];
+
+        return view('book.show', compact('content')); 
     }
 
     /**
@@ -137,5 +147,43 @@ class BookControl extends Controller
             return true;
         else
          return false;
+    }
+
+    public function rating(Request $request, $id) {
+
+        $obj = Book::find($id);
+        foreach ($request->input() as $value) {
+            $rate = $value;
+        }
+        $rate = ($rate + $obj->rate) / 2;
+        $obj->rate = number_format($rate, 1, '.', ' ');
+        $obj->save();
+
+        $rate = ($obj->rate/4)*100; 
+        $status = ['rate' => $rate];
+        if ($status['rate'] == 0) {
+            $status['rate'] = 100;
+            $status['title'] = 'Sem classificação';
+            $status['bg'] = 'bg-light text-dark';
+        }
+        else if ($status['rate'] <= 25) {
+            $status['title'] = 'Ruim';
+            $status['bg'] = 'bg-danger';
+        }
+        else if ($status['rate'] <= 50) {
+            $status['title'] = 'Razoável';
+            $status['bg'] = 'bg-warning';
+        }
+        else if ($status['rate'] <= 75) {
+            $status['title'] = 'Bom';
+            $status['bg'] = 'bg-success';
+        }
+        else {
+            $status['title'] = 'Muito bom';
+            $status['bg'] = 'bg-primary';
+        }
+
+        return json_encode($status);
+
     }
 }

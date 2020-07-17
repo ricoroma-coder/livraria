@@ -32,7 +32,9 @@
                         <td class="w-25 pt-4 m-0">
                             <div class="row m-0 p-0 w-100 h-auto">
                                 <a href="{{ route($route.'.edit', $value->id) }}" class="btn btn-primary btn-sm col-sm-12">Mudar</a>
-                            
+
+                                <a href="{{ route($route.'.show', $value->id) }}" class="btn btn-secondary btn-sm col-sm-12">Acessar</a>
+
                                 <a data="{{$value->id}}" href="{{ route($route.'.destroy', $value->id) }}" class="btn btn-danger btn-sm ajax-delete col-sm-12">Apagar</a>
                             </div>
                         </td>
@@ -40,7 +42,7 @@
                     @else
 
                         <td class="w-25 pt-5">
-                            <a href="{{ route($route.'.show', $value->id) }}" class="btn btn-primary btn-sm">Informações</a>
+                            <a href="{{ route($route.'.show', $value->id) }}" class="btn btn-secondary btn-sm col-sm-12">Acessar</a>
                         </td>
 
                     @endif

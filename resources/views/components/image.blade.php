@@ -5,8 +5,11 @@
         </div>
     </div>
 
-    <div class="row m-0 w-100 text-center" style="height: 50px;">
-        <button id="image-trigger" class="btn btn-secondary ml-auto mr-auto">Importar imagem</button>
-    </div>
-    <input type="file" class="d-none" name="image" id="image-selector">
+    @if ($config)
+        <div class="row m-0 w-100 text-center" style="height: 50px;">
+            <button id="image-trigger" class="btn btn-secondary ml-auto mr-auto">Importar imagem</button>
+        </div>
+        <input type="file" class="d-none" name="image" id="image-selector">
+    @endif
+    
 </div>

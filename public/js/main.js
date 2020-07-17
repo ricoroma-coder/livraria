@@ -216,31 +216,6 @@ $('form.ajax-form').submit( function(e) {
 
 });
 
-// update register fields
-
-function updateFields(){
-
-	if(!$.isEmptyObject(obj)){
-
-		$.each($('input[type="text"], input[type="email"], input[type="number"], input[type="date"], input[type="time"], input[type="password"], select, textarea'), function(){
-			var t = $(this)
-				value = obj[t.attr('name')];
-			if($.type(value) == 'object'){
-				t.val(value['id']);
-			}else{
-				t.val(value);
-			}
-		});
-
-		$('input[type="radio"]').each(function(){
-			var name = $(this).attr('name');
-			$('input[name="'+name+'"][value="'+obj[name]+'"]').prop('checked','true');
-		});
-
-	}
-
-}
-
 // Ajax Search
 
 $('#searchTarget').keyup( function () {
@@ -300,6 +275,52 @@ $('#searchTarget').keyup( function () {
  
 });
 
+// rating
+$('.rating').click( function () {
+  var t = $(this),
+  form = t.parents('form');
+
+  form.trigger('submit');
+
+});
+
+$(".rate-form").submit( function(e) {
+
+  e.preventDefault();
+	var t = $(this),
+  msg = $('.message'),
+  d = new FormData(t[0]),
+  action = t.attr('action');
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  $.ajax({
+    url: action,
+    type: 'POST',
+    data: d,
+    contentType: false,
+    processData: false,
+    success: function(x) {
+      $('.progress').css('width', x.rate);
+      $('.progress').attr('aria-valuenow', x.rate);
+      $('.progress-bar strong').text(x.title);
+      $('.progress-bar').attr('class', 'progress-bar '+x.bg);
+      $('.rating').attr('disabled','disabled');
+      msg.text(msg.attr('success')).addClass('text-success');
+    },
+    error: function(x){
+      $('.rating').attr('disabled','disabled');
+      alert('Houve um erro de conexão');
+    }
+  });
+
+
+});
+
 // Functions
 
 function time_now() {
@@ -356,4 +377,29 @@ function ajaxRedirect(count) {
       alert('Houve um erro de conexão');
     }
   });
+}
+
+// update register fields
+
+function updateFields(){
+
+	if(!$.isEmptyObject(obj)){
+
+		$.each($('input[type="text"], input[type="email"], input[type="number"], input[type="date"], input[type="time"], input[type="password"], select, textarea'), function(){
+			var t = $(this)
+				value = obj[t.attr('name')];
+			if($.type(value) == 'object'){
+				t.val(value['id']);
+			}else{
+				t.val(value);
+			}
+		});
+
+		$('input[type="radio"]').each(function(){
+			var name = $(this).attr('name');
+			$('input[name="'+name+'"][value="'+obj[name]+'"]').prop('checked','true');
+		});
+
+	}
+
 }
