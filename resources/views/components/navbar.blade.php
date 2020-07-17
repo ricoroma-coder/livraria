@@ -31,9 +31,24 @@
         </ul>
 
         {{--  search tool  --}}
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ir</button>
+        <form action="{{ route('search', 'books writers pub_companies') }}" class="form-inline my-2 my-lg-0 row">
+            @csrf
+            <input type="hidden" name="modify" value="0">
+
+            <div class="col-md-12 m-0 p-0 row">
+                <div class="col-md-9 m-0 p-0">
+                    <input class="form-control mr-sm-2 w-100 m-0" type="search" placeholder="Pesquisar" aria-label="Search" id="searchTarget" href="{{ route('ajaxSearch') }}" data-require="books writers pub_companies" name="search">
+                </div>
+
+                <div class="row p-0 m-0 h-auto w-100 position-absolute bg-light" id="searchContent" redirect="{{ route('searchRedirect') }}" modify="false"></div>
+            
+                <div class="col-md-3 m-0 p-0">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ir</button>
+                </div>
+            </div>
+            
+
+            
         </form>
     </div>
 </nav>

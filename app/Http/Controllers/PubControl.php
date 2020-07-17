@@ -88,9 +88,12 @@ class PubControl extends Controller
             'books' => Book::getAll()->where('id_pub', $id)
         ];
 
+        $modify = true;
+
         $content['obj']->getSlogan();
         $content['obj']->getAddress();
-        return view('pub_company.show', compact('content'));
+        $extends = 'layout.dash_main';
+        return view('pub_company.show', compact('content', 'modify', 'extends'));
     }
 
     /**

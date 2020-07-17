@@ -82,7 +82,9 @@ class BookControl extends Controller
             'writer' => Writer::newById($obj->id_writer)
         ];
 
-        return view('book.show', compact('content')); 
+        $modify = true;
+        $extends = 'layout.dash_main';
+        return view('book.show', compact('content','modify','extends')); 
     }
 
     /**

@@ -296,13 +296,21 @@ $('#searchTarget').keyup( function () {
               rate = rate+'<div class="col-sm-3 star m-0 p-0"></div>';
             }
             var route = v.route;
+            var rateHTML = '';
+            if ($('input[type="hidden"][name="modify"]').val() == 1) {
+              rateHTML = '<div class="col-sm-4 m-0 h-100 row">'+
+              rate+
+              '</div>';
+            }
+            var style = 'col-sm-8';
+            if (rateHTML == '') {
+              style = 'col-sm-12';
+            }
             content.append('<div class="search-item row m-0 w-100 p-2 text-center border" style="height:50px;" count="'+count+'" onclick="ajaxRedirect('+count+')" route="'+route+'">'+
-            '<div class="col-sm-8 m-0 h-100">'+
-            '<h5 class="p-1">'+v.name+'</h5>'+
+            '<div class="'+style+' m-0 h-100">'+
+            '<h5 class="p-1 w-100 m-0">'+v.name+'</h5>'+
             '</div>'+
-            '<div class="col-sm-4 m-0 h-100 row">'+
-            rate+
-            '</div>'+
+            rateHTML+
             '</div>');
             var bottom = content.css('bottom');
             var px = bottom.split('p')[0];
@@ -451,14 +459,19 @@ function ajaxRedirect(count) {
   target = t.attr('route'),
   route = target.split(' ')[0];
   id = target.split(' ')[1],
-  redirect = $('#searchContent').attr('redirect');
+  redirect = $('#searchContent').attr('redirect'),
+  modify = $('#searchContent').attr('modify');
+
+  // alert(redirect);
 
   $.ajax({
     url: redirect,
     type: 'GET',
-    data: {'route': route, 'id': id},
+    data: {'route': route, 'id': id, 'modify': modify},
     success: function(x) {
+      // alert(x);
       window.location.href = x;
+      // alert('success');
     },
     error: function(x) {
       alert('Houve um erro de conexão');

@@ -90,7 +90,9 @@ class WriterControl extends Controller
             'books' => Book::getAll()->where('id_writer', $id)
         ];
 
-        return view('writer.show', compact('content'));
+        $modify = true;
+        $extends = 'layout.dash_main';
+        return view('writer.show', compact('content', 'modify', 'extends'));
     }
 
     /**

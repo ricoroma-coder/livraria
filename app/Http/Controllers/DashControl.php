@@ -62,9 +62,22 @@ class DashControl extends Controller
 
     public function redirect(Request $request) {
         $route = $request->input('route');
+        if ($request->input('modify') == 'false') {
+            $modify = 0;
+            if ($route == 'dashPubs')
+                $route = 'indexPubs';
+            if ($route == 'dashBooks')
+                $route = 'indexBooks';
+            if ($route == 'dashWriters')
+                $route = 'indexWriters';
+        }
+        else {
+            $modify = 1;
+            $route = $route.'.show';
+        }
         $id = $request->input('id');
 
-        return route($route.'.show', $id);
+        return route($route, $id);
     }
 
     public function search(Request $request, $require) {

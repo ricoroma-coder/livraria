@@ -4,7 +4,10 @@
         @csrf
         <input type="hidden" name="modify" value="1">
         <input class="form-control col-sm-11" type="text" placeholder="Pesquisar" aria-label="Search" id="searchTarget" href="{{ route('ajaxSearch') }}" data-require="{{ $data }}" name="search">
-        <div class="row col-sm-11 p-0 m-0 h-auto w-100 position-absolute bg-light" id="searchContent" redirect="{{ route('searchRedirect') }}">
+        @php
+            $modify = 'true';
+        @endphp
+        <div class="row col-sm-11 p-0 m-0 h-auto w-100 position-absolute bg-light" id="searchContent" redirect="{{ route('searchRedirect') }}" modify="true">
 
         </div>
         <button class="btn btn-primary col-sm-1" type="submit">Ir</button>

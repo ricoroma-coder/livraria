@@ -1,14 +1,18 @@
-@extends('layout.dash_main')
+@extends($extends)
 
 @section('title', 'Livro '.$content['obj']->name)
+
 @section('content')
 
-<div id="screen" class="close ml-auto">
+<div id="screen" class="{{ ($modify) ? 'close' : 'open' }} ml-auto">
 
-    <div class="row m-0 w-100">
-        @component('components.search', ['data' => 'books'])
-        @endcomponent
-    </div>
+    @if ($modify)
+        <div class="row m-0 w-100">
+            @component('components.search', ['data' => 'books'])
+            @endcomponent
+        </div>
+    @endif
+    
 
     <div id="dash-body">
         <p class="title mt-4">Perfil do livro {{ $content['obj']->name }}</p>
@@ -210,7 +214,7 @@
                                                         <div class="m-0 m-1 w-100 overflow-hidden mh-100 position-relative">
                                                             <p class="card-text p-1"><small>{{ $content['writer']->description }}</small></p>
                                                             <div class="position-absolute" style="bottom:0;right:0;">
-                                                                <a href="{{ route('dashBooks.show', $content['writer']->id) }}" class="btn btn-sm border border-dark bg-light">Leia mais...</a>
+                                                                <a href="{{ ($modify) ? route('dashWriters.show', $content['writer']->id) : route('indexWriters', $content['writer']->id) }}" class="btn btn-sm border border-dark bg-light">Leia mais...</a>
                                                             </div>
                                                         </div>
                         
@@ -219,7 +223,7 @@
                                                 <div class="row m-0 pt-auto h-25 w-100">
     
                                                     <div class="row m-0 w-100">
-                                                        <a href="{{ route('dashWriters.show', $content['writer']->id) }}" class="btn btn-primary btn-sm h-auto mt-auto ml-auto">Acessar</a>
+                                                        <a href="{{ ($modify) ? route('dashWriters.show', $content['writer']->id) : route('indexWriters', $content['writer']->id) }}" class="btn btn-primary btn-sm h-auto mt-auto ml-auto">Acessar</a>
     
                                                     </div>
                                                 </div>
@@ -248,7 +252,7 @@
                                                         <div class="m-0 m-1 w-100 overflow-hidden mh-100 position-relative">
                                                             <p class="card-text p-1"><small>{{ $content['pub']->description }}</small></p>
                                                             <div class="position-absolute" style="bottom:0;right:0;">
-                                                                <a href="{{ route('dashPubs.show', $content['pub']->id) }}" class="btn btn-sm border border-dark bg-light">Leia mais...</a>
+                                                                <a href="{{ ($modify) ? route('dashPubs.show', $content['pub']->id) : route('indexPubs', $content['pub']->id) }}" class="btn btn-sm border border-dark bg-light">Leia mais...</a>
                                                             </div>
                                                         </div>
                         
@@ -257,7 +261,7 @@
                                                 <div class="row m-0 pt-auto h-25 w-100">
     
                                                     <div class="row m-0 w-100">
-                                                        <a href="{{ route('dashWriters.show', $content['pub']->id) }}" class="btn btn-primary btn-sm h-auto mt-auto ml-auto">Acessar</a>
+                                                        <a href="{{ ($modify) ? route('dashPubs.show', $content['pub']->id) : route('indexPubs', $content['pub']->id) }}" class="btn btn-primary btn-sm h-auto mt-auto ml-auto">Acessar</a>
     
                                                     </div>
                                                 </div>

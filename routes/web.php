@@ -27,15 +27,18 @@ Route::get('/dash', 'DashControl@index')->name('dash');
 Route::get('/dash/ajaxSearch', 'DashControl@ajaxSearch')->name('ajaxSearch');
 Route::post('/dash/search/{data}', 'DashControl@search')->name('search');
 // Redirect
-Route::get('/dash/redirect', 'DashControl@redirect')->name('searchRedirect');
+Route::get('/dash/redirect/', 'DashControl@redirect')->name('searchRedirect');
 
 // Model Control
 // PubCompany
 Route::resource('dashPubs', 'PubControl');
 Route::post('dashPubs/rating/{id}', 'PubControl@rating')->name('pubRating');
+Route::get('indexShow/pub/{id}', 'ViewControl@showPub')->name('indexPubs');
 // Writer
 Route::resource('dashWriters', 'WriterControl');
 Route::post('dashWriters/rating/{id}', 'WriterControl@rating')->name('writerRating');
+Route::get('indexShow/writer/{id}', 'ViewControl@showWriter')->name('indexWriters');
 // Book
 Route::resource('dashBooks', 'BookControl');
 Route::post('dashBooks/rating/{id}', 'BookControl@rating')->name('bookRating');
+Route::get('indexShow/book/{id}', 'ViewControl@showBook')->name('indexBooks');
