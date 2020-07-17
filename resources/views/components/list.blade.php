@@ -16,7 +16,7 @@
 
     @if (isset($content) || !empty($content))
 
-    <table class="table table-hover">
+    <table class="table table-hover" id="table-list">
         <tbody>
             
             @foreach ($content as $value)
@@ -24,9 +24,15 @@
                 <tr value="{{ $value->id }}">
                         
                     <td class="w-25"><img style="height: 200px;max-height: 200px;" class="h-100 w-100" src="{{ $value->image }}" alt="{{ $value->name }}"></td>
-                    <td class="w-25 pt-5"><h4>{{ $value->name }}</h4></td>
-                    <td class="w-25 pt-5">{{ $value->clicks }} cliques</td>
-                    <td class="w-25 pt-5">Clas: {{ ($value->rate/4)*100 }}%</td>
+                    <td class="w-25 pt-5" value="name"><h4>{{ $value->name }}</h4></td>
+                    <td class="w-25 pt-5" value="clicks">{{ $value->clicks }} cliques</td>
+                    <td class="w-25 pt-5" value="rate">Clas: {{ ($value->rate/4)*100 }}%</td>
+
+                    @foreach ($hidden as $item)
+                        
+                        <td class="w-25 pt-5 td-hidden" value="{{$item}}"><h4>{{ $value->$item }}</h4></td>
+
+                    @endforeach
 
                     @if ($modify)
                         <td class="w-25 pt-4 m-0">

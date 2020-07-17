@@ -17,6 +17,10 @@ class PubControl extends Controller
     public function index()
     {
         $content = PubCompany::getAll(true);
+        foreach ($content as $value) {
+            $query = DB::table('books')->where('id_pub', $value->id)->count();
+            $value->count = $query;
+        }
         return view('pub_company.index', compact('content'));
     }
 

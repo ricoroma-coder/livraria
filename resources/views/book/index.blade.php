@@ -20,7 +20,7 @@
         </div>
 
         <div class="row m-0 w-100">
-            @component('components.list', ['content' => $content['books'], 'modify' => true, 'route' => 'dashBooks'])
+            @component('components.list', ['content' => $content['books'], 'modify' => true, 'route' => 'dashBooks', 'hidden' => ['year','created_at','id_pub','id_writer']])
             @endcomponent
         </div>
     </div>

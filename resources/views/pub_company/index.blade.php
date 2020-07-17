@@ -20,7 +20,7 @@
         </div>
 
         <div class="row m-0 w-100">
-            @component('components.list', ['content' => $content, 'modify' => true, 'route' => 'dashPubs'])
+            @component('components.list', ['content' => $content, 'modify' => true, 'route' => 'dashPubs', 'hidden' => ['created_at','count']])
             @endcomponent
         </div>
     </div>

@@ -10,7 +10,7 @@
     </div>
 
     <div id="filter-form" class="row m-0 w-100 close">
-        <form action="#" class="ajax-form w-100">
+        <form class="ajax-form w-100">
             @foreach ($content as $key => $value)
     
                 <div class="col-sm-{{12/sizeof($content)}} p-2">
@@ -22,7 +22,7 @@
                 
             @endforeach
             <div class="row m-0 w-100 p-2">
-                <button type="submit" class="btn btn-primary">Filtrar</button>
+                <button type="submit" class="btn btn-primary filter-button">Filtrar</button>
             </div>
         </form>
     </div>

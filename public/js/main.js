@@ -367,6 +367,47 @@ $(".rate-form").submit( function(e) {
 
 });
 
+// filter
+
+$('.filter-button').click( function (e) {
+  e.preventDefault();
+  var t = $(this),
+  form = t.parents('form');
+
+  $('#table-list tr').css('display', 'block');
+
+  $('#filter input, #filter select').each( function () {
+    var value = $(this).val();
+    if (value != '') {
+      var tds = $('#table-list tr td[value="'+$(this).attr('name')+'"] h4');
+      if ($(this).attr('name') == 'min-count' || $(this).attr('name') == 'max-count') {
+        tds = $('#table-list tr td[value="count"] h4');
+        if ($(this).attr('name') == 'min-count') {
+          tds.each( function () {
+            if ($(this).text() < value)
+              $(this).parents('tr').css('display', 'none');
+          });
+        }
+        else {
+          tds.each( function () {
+            if ($(this).text() > value)
+              $(this).parents('tr').css('display', 'none');
+          });
+        }
+      }         
+      else {
+        tds.each( function () {
+          var text = $(this).text().toUpperCase();
+          if (text.indexOf(value.toUpperCase()) == -1)
+            $(this).parents('tr').css('display', 'none');
+        });
+      }
+      
+    }
+    
+  });
+});
+
 // Functions
 
 function time_now() {

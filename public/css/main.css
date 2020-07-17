@@ -332,6 +332,12 @@ div.inData {
     display: block;
 }
 
+/* ==== List ==== */
+
+.td-hidden {
+    display: none;
+}
+
 /* ==== endComponents ==== */
 
 /* show */

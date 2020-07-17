@@ -18,6 +18,22 @@ class WriterControl extends Controller
     public function index()
     {
         $content = Writer::getAll(true);
+        foreach ($content as $value) {
+            $query = DB::table('books')->where('id_writer', $value->id)->count();
+            $value->count = $query;
+            $birth = 0;
+            $death = 0;
+            if (!empty($value->birth))
+                $birth = explode('-',$value->birth)[0];
+            if (!empty($value->death))
+                $death = explode('-',$value->death)[0];
+
+            if ($birth != 0 && $death == 0)
+                $death = date('Y');
+
+            if ($birth != 0 && $death != 0)
+                $value->age = $death - $birth;
+        }
         return view('writer.index', compact('content'));
     }
 
