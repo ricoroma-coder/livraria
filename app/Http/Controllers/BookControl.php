@@ -46,6 +46,13 @@ class BookControl extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:100',
+            'isbn' => 'required|integer|unique:users',
+            'year' => 'required|integer',
+            'id_writer' => 'required',
+            'id_pub' => 'required'
+        ]);
         $post = $request->input();
         unset($post['_token']);
         $obj = new Book();
@@ -113,6 +120,13 @@ class BookControl extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:100',
+            'isbn' => 'required|integer|unique:users',
+            'year' => 'required|integer',
+            'id_writer' => 'required',
+            'id_pub' => 'required'
+        ]);
         $put = $request->input();
         unset($put['_token']);
         unset($put['_method']);

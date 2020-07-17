@@ -255,7 +255,7 @@ $('form.ajax-form').submit( function(e) {
       }
     },
     error: function(){
-      msg.text('Houve um erro de conexão').addClass('text-danger');
+      msg.text('Preencha todos os campos corretamente').addClass('text-danger');
     }
   });
   

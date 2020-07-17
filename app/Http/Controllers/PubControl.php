@@ -42,6 +42,9 @@ class PubControl extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:100'
+        ]);
         $content = $request->input();
         unset($content['_token']);
         $slogan = $content['slogan'];
@@ -120,6 +123,9 @@ class PubControl extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:100|unique:users'
+        ]);
         $put = $request->input();
         unset($put['_token']);
         unset($put['_method']);

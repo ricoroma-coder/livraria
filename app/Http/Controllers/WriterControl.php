@@ -55,6 +55,9 @@ class WriterControl extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:100'
+        ]);
         $post = $request->input();
         unset($post['_token']);
         $obj = new Writer();
@@ -116,6 +119,9 @@ class WriterControl extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:100|unique:users'
+        ]);
         $put = $request->input();
         unset($put['_token']);
         unset($put['_method']);

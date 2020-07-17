@@ -41,7 +41,7 @@
                             @component('components.image', ['content' => $content->image, 'config' => true])
                             @endcomponent
                         @else
-                            @component('components.image')
+                            @component('components.image', ['config' => true])
                             @endcomponent
                         @endif
                     </div>
@@ -70,6 +70,15 @@
 
             </form>
         </div>
+        @if ($errors->any())
+            <div class="row w-100 m-0 p-0 card-footer">
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger col-md-12" role="alert">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 
 </div>
