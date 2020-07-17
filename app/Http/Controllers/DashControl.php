@@ -17,7 +17,26 @@ class DashControl extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $countBooks = Book::countDate();
+        $countPubs = PubCompany::countDate();
+        $countWriters = Writer::countDate();
+
+        $books = Book::getAll()->sortByDesc('clicks')->take(3);
+        $pubs = PubCompany::getAll()->sortByDesc('clicks')->take(3);
+        $writers = Writer::getAll()->sortByDesc('clicks')->take(3);
+
+        $content = [
+            'books' => $books,
+            'pubs' => $pubs,
+            'writers' => $writers
+        ];
+
+        $count = [
+            'books' => $countBooks,
+            'writers' => $countWriters,
+            'pubs' => $countPubs
+        ];
+        return view('dashboard', compact('content','count'));
     }
 
     public function ajaxSearch(Request $request) {

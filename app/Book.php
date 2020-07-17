@@ -84,4 +84,23 @@ class Book extends Model
         return true;
     }
 
+    public static function countDate() {
+        $today = date('d');
+        $thisMonth = date('m');
+        $accToday = 0;
+        $accMonth = 0;
+
+        foreach (Book::all() as $value) {
+            $aux = explode(' ', $value->created_at)[0];
+            $day = explode('-', $aux)[2];
+            $month = explode('-', $aux)[1];
+            if ($day == $today)
+                $accToday++;
+            if ($month == $thisMonth)
+                $accMonth++;
+        }
+
+        return [$accToday, $accMonth, Book::all()->count()];
+    }
+
 }

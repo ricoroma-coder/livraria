@@ -47,7 +47,7 @@ class PubCompany extends Model
 
         $hall = PubCompany::fillHall($all);
 
-        $clicks = $all->sortByDesc('rate')->all();
+        $clicks = $all->sortByDesc('clicks')->all();
         $clicks = maxIndex($clicks, 6);
 
         if ($current == 'main')
@@ -112,5 +112,24 @@ class PubCompany extends Model
         }
 
         return true;
+    }
+
+    public static function countDate() {
+        $today = date('d');
+        $thisMonth = date('m');
+        $accToday = 0;
+        $accMonth = 0;
+
+        foreach (PubCompany::all() as $value) {
+            $aux = explode(' ', $value->created_at)[0];
+            $day = explode('-', $aux)[2];
+            $month = explode('-', $aux)[1];
+            if ($day == $today)
+                $accToday++;
+            if ($month == $thisMonth)
+                $accMonth++;
+        }
+
+        return [$accToday, $accMonth, PubCompany::all()->count()];
     }
 }
