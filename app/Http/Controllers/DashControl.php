@@ -48,4 +48,46 @@ class DashControl extends Controller
         return route($route.'.show', $id);
     }
 
+    public function search(Request $request, $require) {
+        $modify = $request->input('modify');
+
+        $data = explode(' ', $require);
+        $content = [];
+        $obj = '';
+
+        foreach ($data as $value) {
+            $route = '';
+            $collection = DB::table($value)->select('id')->where('name', 'like', '%'.$request->input('search').'%')->get();
+            foreach ($collection as $v) {
+                if ($value == 'pub_companies') {
+                    $obj = PubCompany::newById($v->id);
+                    $obj->route = 'dashPubs';
+                    $obj->class = 'Editora';
+                    $obj->imgDefault = 'pubs';
+                }
+                else if ($value == 'books') {
+                    $obj = Book::newById($v->id);
+                    $obj->route = 'dashBooks';
+                    $obj->class = 'Livro';
+                    $obj->imgDefault = $value;
+                }
+                else if ($value == 'writers') {
+                    $obj = Writer::newById($v->id);
+                    $obj->route = 'dashWriters';
+                    $obj->class = 'Escritor';
+                    $obj->imgDefault = $value;
+                }
+                $content[] = $obj;
+            }
+            
+        }
+
+
+        return view('search-content', compact('content', 'modify'));
+    }
+
+    public function searchContent($content, $modify) {
+        return view('search-content');
+    }
+
 }

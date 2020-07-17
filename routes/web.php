@@ -25,7 +25,7 @@ Route::get('/dash', 'DashControl@index')->name('dash');
 // Ajax Routes
 // Search
 Route::get('/dash/ajaxSearch', 'DashControl@ajaxSearch')->name('ajaxSearch');
-Route::post('/dash/search', 'DashControl@search')->name('search');
+Route::post('/dash/search/{data}', 'DashControl@search')->name('search');
 // Redirect
 Route::get('/dash/redirect', 'DashControl@redirect')->name('searchRedirect');
 
